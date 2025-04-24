@@ -1,0 +1,755 @@
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap'); 
+
+@font-face {
+    font-family: 'World Bold';
+    src: url('Assets/fonts/6129.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+html {
+    background-color: transparent; 
+    height: 100%; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative; 
+    font-family: 'Monomaniac One', sans-serif; 
+    background-color: rgba(60, 90, 130, 0.85); 
+    color: #e61a1a;
+    overflow-x: hidden; 
+    --background-blur: 0px; 
+    --tint-opacity: 0; 
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -5%; 
+    left: -5%; 
+    width: 110%; 
+    height: 110%; 
+    background-image: url('Assets/Opening-Years-Assets/herobackground.svg');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    filter: blur(var(--background-blur)); 
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-color: rgba(35, 65, 91, var(--tint-opacity)); 
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+
+.content {
+    background-color: transparent; 
+}
+
+
+.top-gradient-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+
+    height: 150px; 
+    background: linear-gradient(to bottom, rgba(100, 181, 246, 0.4), rgba(100, 181, 246, 0)); 
+    z-index: 5; 
+    pointer-events: none;
+    opacity: 1; 
+    transition: opacity 0.1s ease-out; 
+}
+
+
+
+section {
+    position: relative;
+    min-height: 100vh; 
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 50px;
+    box-sizing: border-box;
+    overflow: hidden; 
+    scroll-snap-align: start; 
+}
+
+
+.hero-section {
+    color: #fff;
+    
+    z-index: 1; 
+}
+
+
+
+.hero-content {
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10; 
+    text-align: center;
+    width: 850px; 
+    background-color: rgba(87, 141, 182, 0.75); 
+    padding: 10px 10px 30px; 
+    border-radius: 30px; 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 2px solid #BCC2C9; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); 
+    opacity: 1; 
+}
+
+.hero-content h1 {
+    font-family: 'World Bold', sans-serif; 
+    font-size: 8.5em; 
+    color: #E3E8EA; 
+    margin: 0 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+.hero-content .year {
+    font-size: 4.2em; 
+    margin: 0 0 15px 0; 
+    opacity: 1; 
+    color: #AADADB; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+.hero-buttons button {
+    background-color: #AADADB; 
+    border: none;
+    color: #424242; 
+    padding: 20px 50px; 
+    margin-left: 20px;
+    border-radius: 35px; 
+    cursor: pointer;
+    font-size: 2.2em; 
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); 
+}
+
+.hero-buttons button:hover {
+    background-color: #99c9cb; 
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.3); 
+}
+
+
+.hero-buttons button:last-child {
+    margin-left: 200px; 
+}
+
+
+
+
+.planning-section {
+    
+    
+    
+    padding: 100px 50px; 
+    margin-top: 350px; 
+    z-index: 2; 
+    
+}
+
+
+.planning-content-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 1250px; 
+}
+
+.planning-content-wrapper {
+    padding: 40px 50px;
+    border-radius: 20px;
+    width: 100%; 
+    margin: 0 0 30px; 
+    text-align: left;
+    opacity: 0; 
+}
+
+.planning-content-wrapper h2 {
+    font-family: 'World Bold', sans-serif; 
+    font-size: 4.8em;
+    margin-top: 0;
+    margin-bottom: 25px;
+    text-align: center;
+    color: #E3E8EA;
+    text-shadow: 2px 2px 3px rgba(0,0,0,0.4);
+}
+
+.planning-content-wrapper .quote {
+    font-family: 'Inter', sans-serif;
+    font-style: italic;
+    margin: 0 auto 35px auto;
+    padding: 15px 20px;
+    border-left: 4px solid #AADADB; 
+    max-width: 80%;
+    text-align: center;
+    font-size: 2.2em;
+    line-height: 1.6;
+    color: #eee;
+}
+
+.planning-content-wrapper .quote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 0.95em;
+    opacity: 0.9;
+    color: #AADADB;
+}
+
+
+.paragraphs-wrapper {
+    background-color: rgba(60, 90, 130, 0.85);
+    padding: 0px 40px 40px;
+    border-radius: 20px;
+    width: 100%; 
+    margin: 0; 
+    text-align: left;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    opacity: 0; 
+}
+
+.text-block p {
+    font-family: 'Inter', sans-serif; 
+    font-size: 1.7em;
+    font-weight: 400;
+    line-height: 1.7;
+    margin-bottom: 20px;
+    color: #eee;
+}
+
+.text-block p:last-child {
+    margin-bottom: 0;
+}
+
+
+
+
+
+.gradient-transition-div {
+    height: 300px; 
+    width: 100%;
+    background: linear-gradient(to bottom, transparent, black);
+    position: relative; 
+    z-index: 3; 
+    pointer-events: none; 
+}
+
+
+
+
+#introduction-section {
+    background-color: black;
+    color: white;
+    
+    position: relative; 
+    z-index: 4;
+    padding: 50px; 
+    min-height: 150vh; 
+    
+}
+
+
+
+#introduction-section h2,
+#introduction-section .intro-logo,
+#introduction-section #retro-image-1,
+#introduction-section #retro-image-2,
+#introduction-section #retro-image-3,
+#introduction-section #retro-image-4 {
+    position: absolute; 
+    margin: 0; 
+}
+
+#introduction-section h2 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 5em; 
+    color: #E3E8EA;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.3);
+    top: 10%; 
+    left: 5%;  
+}
+
+.intro-logo {
+    width: 40%; 
+    max-width: 700px; 
+    height: auto;
+    top: 5%; 
+    left: 11%;  
+}
+
+#retro-image-1 { 
+    width: 30%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 45px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    top: 26%;
+    right: 25%;
+    width: 35%; 
+    max-width: 700px; 
+    z-index: 10; 
+}
+
+#retro-image-2 { 
+    width: 45%;
+    max-width: 615px;
+    height: auto;
+    border-radius: 45px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    top: 10%;
+    left: 68%;
+    transform: translateX(-50%); 
+}
+
+#retro-image-3 { 
+    width: 35%;
+    max-width: 450px;
+    height: auto;
+    border-radius: 45px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    left: 20%;
+    width: 40%; 
+    max-width: 700px; 
+}
+
+#retro-image-4 { 
+    width: 25%;
+    max-width: 377px;
+    height: auto;
+    border-radius: 45px;
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.1);
+    right: 10%;
+}
+
+
+
+.fade-in-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out; 
+}
+
+
+#introduction-section.is-visible .fade-in-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#core-concepts-section.is-visible .fade-in-item {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+#introduction-section.is-visible h2.fade-in-item { transition-delay: 0s; }
+#introduction-section.is-visible img.intro-logo { transition-delay: 1s; }
+#introduction-section.is-visible #retro-image-4 { transition-delay: 1.8s; } 
+#introduction-section.is-visible #retro-image-2 { transition-delay: 2.8s; } 
+#introduction-section.is-visible #retro-image-3 { transition-delay: 3.8s; } 
+#introduction-section.is-visible #retro-image-1 { transition-delay: 5s; } 
+
+
+
+
+#core-concepts-section {
+    background-color: black;
+    color: white;
+    padding: 30px 50px; 
+    z-index: 5; 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 60px; 
+}
+
+.concept-text-container {
+    display: flex; 
+    gap: 40px; 
+    border: 2px solid white;
+    border-radius: 30px;
+    padding: 40px;
+    max-width: 1400px; 
+    width: 90%; 
+    margin-bottom: 40px; 
+    opacity: 0; 
+}
+
+.concept-text-container p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.6em; 
+    line-height: 1.6;
+    flex: 1; 
+    margin: 0; 
+}
+
+.concept-grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); 
+    gap: 50px; 
+    width: 100%;
+    max-width: 1300px; 
+    padding: 0 20px; 
+}
+
+.concept-card {
+    position: relative; 
+    overflow: hidden; 
+    border-radius: 30px;
+    aspect-ratio: 2 / 1; /* Changed from 3/1 to 2/1 to make it taller */
+    cursor: pointer;
+    opacity: 0; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    background-color: transparent; 
+}
+
+
+
+.card-visible {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    background-color: transparent;
+    border-radius: 30px;
+    box-sizing: border-box;
+    transition: transform 0.5s ease-in-out;
+    display: flex;
+    justify-content: flex-end; /* Align content to the right */
+}
+
+.card-visible img {
+    height: 100%;
+    width: auto; /* Let width be determined by height */
+    object-fit: cover;
+    transition: none;
+}
+
+.card-hidden {
+    position: absolute;
+    top: 0;
+    right: 0; /* Position text on the right side */
+    width: 50%;
+    height: 100%;
+    background-color: #2c3e50;
+    color: #eee;
+    border-radius: 30px; /* Rounded corners only on the right side */
+    display: flex;
+    align-items: center;
+    padding: 30px;
+    box-sizing: border-box;
+    z-index: 1;
+    text-align: center;
+}
+
+.card-hidden p {
+    font-family: 'World Bold', sans-serif;
+    font-size: 1.4em; 
+    line-height: 1.5;
+    margin: 0;
+}
+
+
+.concept-card:hover .card-visible {
+    transform: translateX(-50%); /* Move the image container to the left, but keep it partially visible */
+}
+
+/* Add a subtle background to the card to ensure it looks good when image slides away */
+.concept-card {
+    background-color: #1a2a3a; /* Dark blue background that complements the text area */
+}
+
+
+#core-concepts-section.is-visible .concept-text-container { transition-delay: 0.5s; }
+#core-concepts-section.is-visible #tech-card { transition-delay: 1.0s; }
+#core-concepts-section.is-visible #science-card { transition-delay: 1.3s; }
+#core-concepts-section.is-visible #industry-card { transition-delay: 1.6s; }
+#core-concepts-section.is-visible #global-card { transition-delay: 1.9s; }
+
+/* Black fade at bottom of core concepts */
+.black-fade-bottom {
+    height: 150px;
+    width: 100%;
+    background: linear-gradient(to bottom, black, rgba(0, 0, 0, 0.8));
+    position: relative;
+    z-index: 5;
+    pointer-events: none;
+}
+
+/* Two Worlds Section */
+#two-worlds-section {
+    background-image: url('Assets/Opening-Years-Assets/RetroBackground.png');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 50px;
+    min-height: 100vh;
+    z-index: 6;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#two-worlds-section h2 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 5em;
+    color: #E3E8EA;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.worlds-container {
+    display: flex;
+    width: 100%;
+    max-width: 1400px;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+.worlds-boxes {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 45%;
+}
+
+.world-box {
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 30px;
+    padding: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    overflow: visible; /* Changed from hidden to allow content to overflow */
+}
+
+.box-content {
+    transition: opacity 0.7s ease; /* Slower fade-out for smoother transition */
+}
+
+.world-box h3 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 2.5em;
+    margin: 0;
+    color: #E3E8EA;
+}
+
+.world-box h4 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 2em;
+    margin: 5px 0 0;
+    color: #AADADB;
+}
+
+.box-hover-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto; /* Allow height to expand */
+    background-color: rgba(0, 0, 0, 0.95);
+    padding: 40px;
+    box-sizing: border-box;
+    opacity: 0;
+    visibility: hidden; /* Start hidden */
+    transition: opacity 0.7s ease, visibility 0s linear 0.7s; /* Delay visibility change */
+    border-radius: 30px;
+    z-index: 100; /* Ensure it appears on top of everything */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+}
+
+.box-hover-content h3 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 2.5em;
+    margin: 0 0 30px;
+    color: #E3E8EA;
+    text-align: center;
+}
+
+.box-hover-content p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.4em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    color: #eee;
+}
+
+.box-hover-content blockquote {
+    font-family: 'Source Serif Pro', serif;
+    font-style: italic;
+    margin: 30px 0;
+    padding: 15px 25px;
+    border-left: 4px solid #AADADB;
+    font-size: 1.4em;
+    line-height: 1.6;
+    color: #AADADB;
+}
+
+.box-hover-content blockquote cite {
+    display: block;
+    margin-top: 10px;
+    font-style: normal;
+    font-size: 0.9em;
+    color: #eee;
+}
+
+.map-container {
+    width: 50%;
+    position: relative;
+}
+
+.map-container img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+}
+
+.map-overlay {
+    position: absolute;
+    width: 100%;
+    height: 50%;
+    background-color: rgba(0, 0, 0, 0.7);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.top-half {
+    top: 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.bottom-half {
+    bottom: 0;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+/* Completely new approach for hover effects */
+#world-showcase-box:hover .box-content,
+#future-world-box:hover .box-content {
+    opacity: 0;
+}
+
+/* Make the hover content a full-screen overlay */
+#world-showcase-box .box-hover-content,
+#future-world-box .box-hover-content {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    max-width: 1200px;
+    height: auto;
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#world-showcase-box:hover .box-hover-content,
+#future-world-box:hover .box-hover-content {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease, visibility 0s; /* No delay on visibility when showing */
+}
+
+/* Hide the other box when one is hovered */
+#world-showcase-box:hover ~ #future-world-box,
+#future-world-box:hover ~ #world-showcase-box {
+    opacity: 0;
+    transition: opacity 0.7s ease;
+}
+
+/* Create a semi-transparent overlay for the background when a box is hovered */
+.worlds-container::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 90;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.7s ease, visibility 0s linear 0.7s;
+    pointer-events: none;
+}
+
+#world-showcase-box:hover ~ .worlds-container::before,
+#future-world-box:hover ~ .worlds-container::before {
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.7s ease, visibility 0s;
+}
+
+#world-showcase-box:hover ~ .map-container #world-showcase-overlay {
+    opacity: 1;
+}
+
+#future-world-box:hover ~ .map-container #future-world-overlay {
+    opacity: 1;
+}
+
+/* Fade-in animations for the two worlds section */
+#two-worlds-section h2,
+#two-worlds-section .world-box,
+#two-worlds-section .map-container {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out;
+}
+
+#two-worlds-section.is-visible h2 { 
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s;
+}
+
+#two-worlds-section.is-visible #world-showcase-box { 
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.0s;
+}
+
+#two-worlds-section.is-visible #future-world-box { 
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.5s;
+}
+
+#two-worlds-section.is-visible .map-container { 
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 2.0s;
+}

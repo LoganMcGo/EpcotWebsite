@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Epcot Site</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    
+    <div id="stars-container"></div>
+    
+    
+    <div id="fireworks-left" class="fireworks-container fireworks-left"></div>
+    <div id="fireworks-right" class="fireworks-container fireworks-right"></div>
+    
+    <div class="main-container">
+        
+        <div class="outer-group">
+            <img src="Assets/Group 1.svg" alt="Group 1" class="outer-1">
+            <img src="Assets/Group 2.svg" alt="Group 2" class="outer-2">
+            <img src="Assets/Group 3.svg" alt="Group 3" class="outer-3">
+            <img src="Assets/Group 4.svg" alt="Group 4" class="outer-4">
+            <img src="Assets/Group 5.svg" alt="Group 5" class="outer-5">
+            <img src="Assets/Group 6.svg" alt="Group 6" class="outer-6">
+            <img src="Assets/Group 7.svg" alt="Group 7" class="outer-7">
+            <img src="Assets/Group 8.svg" alt="Group 8" class="outer-8">
+        </div>
+
+        
+        <div class="era-group">
+            <img src="Assets/OriginalDesign.svg" alt="Original Design" class="original-design">
+            <a href="opening_day.html"><img src="Assets/OpeningYears.svg" alt="Opening Years" class="opening-years"></a>
+            <img src="Assets/82-90Era.svg" alt="82-90 Era" class="era-82-90">
+            <img src="Assets/90-00Era.svg" alt="90-00 Era" class="era-90-00">
+            <img src="Assets/00-15Era.svg" alt="00-15 Era" class="era-00-15">
+            <img src="Assets/Gallery.svg" alt="Gallery" class="gallery">
+        </div>
+
+        
+        <img src="Assets/EpcotLogo.svg" alt="Epcot Logo" class="epcot-logo">
+        <img src="Assets/Ball Feet.svg" alt="Ball Feet" class="ball-feet">
+        <img src="Assets/Center.svg" alt="Center" class="inner-ball">
+        <img src="Assets/HISTORY OF.svg" alt="History Of" class="history-of">
+    </div>
+
+    <script type="module">
+        
+        import { Fireworks } from './node_modules/fireworks-js/dist/index.es.js';
+        
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            generateStars();
+        
+        
+        const fireworksLeft = new Fireworks(document.getElementById('fireworks-left'), {
+            rocketsPoint: {
+                min: 0,
+                max: 100
+            },
+            hue: {
+                min: 0,
+                max: 355
+            },
+            acceleration: 1.05,
+            brightness: {
+                min: 100,
+                max: 100
+            },
+            decay: {
+                min: 0.015,
+                max: 0.03
+            },
+            delay: {
+                min: 150,
+                max: 200
+            },
+            explosion: 5,
+            flickering: 50,
+            intensity: 30,
+            friction: 0.97,
+            gravity: 1.5,
+            opacity: 0.8,
+            particles: 100,
+            traceLength: 3,
+            traceSpeed: 10,
+            lineWidth: {
+                explosion: {
+                    min: 1,
+                    max: 3
+                },
+                trace: {
+                    min: 1,
+                    max: 2
+                }
+            },
+            lineStyle: 'round'
+        });
+        
+        
+        const fireworksRight = new Fireworks(document.getElementById('fireworks-right'), {
+            rocketsPoint: {
+                min: 0,
+                max: 100
+            },
+            hue: {
+                min: 0,
+                max: 355
+            },
+            acceleration: 1.05,
+            brightness: {
+                min: 100,
+                max: 100
+            },
+            decay: {
+                min: 0.015,
+                max: 0.03
+            },
+            delay: {
+                min: 170,
+                max: 230
+            },
+            explosion: 5,
+            flickering: 50,
+            intensity: 30,
+            friction: 0.97,
+            gravity: 1.5,
+            opacity: 0.8,
+            particles: 100,
+            traceLength: 3,
+            traceSpeed: 10,
+            lineWidth: {
+                explosion: {
+                    min: 1,
+                    max: 3
+                },
+                trace: {
+                    min: 1,
+                    max: 2
+                }
+            },
+            lineStyle: 'round'
+        });
+        
+        
+        fireworksLeft.start();
+        fireworksRight.start();
+        
+        console.log('Fireworks initialized and started');
+        });
+        
+        
+        function generateStars() {
+            const starsContainer = document.getElementById('stars-container');
+            const numStars = 400; 
+            
+            for (let i = 0; i < numStars; i++) {
+                
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                
+                const x = Math.random() * 100; 
+                
+                
+                let y;
+                if (Math.random() < 0.7) {
+                    
+                    y = Math.random() * 40;
+                } else {
+                    
+                    y = 40 + Math.random() * 35;
+                }
+                
+                
+                const size = 0.5 + Math.random() * 4.5;
+                
+                
+                star.style.left = `${x}%`;
+                star.style.top = `${y}%`;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                
+                const animationDelay = Math.random() * 10; 
+                const animationDuration = 1 + Math.random() * 5; 
+                star.style.animationDelay = `${animationDelay}s`;
+                star.style.animationDuration = `${animationDuration}s`;
+                
+                
+                const animations = ['flicker', 'flicker-slow', 'flicker-fast']; 
+                const randomAnimation = animations[Math.floor(Math.random() * animations.length)];
+                star.style.animationName = randomAnimation;
+                
+                
+                if (size < 1.5) {
+                    star.style.opacity = 0.7;
+                } else if (size > 3) {
+                    star.style.opacity = 1;
+                    
+                    star.style.boxShadow = `0 0 ${size * 2}px ${size/2}px rgba(255, 255, 255, 0.9)`;
+                }
+                
+                
+                if (Math.random() > 0.9) {
+                    star.style.animation = `${randomAnimation} ${animationDuration}s linear infinite, twinkle 5s ease-in-out infinite`;
+                }
+                
+                
+                starsContainer.appendChild(star);
+            }
+        }
+    </script>
+</body>
+</html>
