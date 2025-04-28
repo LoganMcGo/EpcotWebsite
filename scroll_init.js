@@ -217,4 +217,19 @@ document.addEventListener('DOMContentLoaded', function () {
     } else {
         console.error("Stats section not found for fade-in animation.");
     }
+    
+    // Future World Pavilions Section Animation
+    const futureWorldPavilionsSection = document.querySelector('#future-world-pavilions');
+
+    if (futureWorldPavilionsSection) {
+        new ScrollMagic.Scene({
+            triggerElement: '#future-world-pavilions',
+            triggerHook: 0.7, // Trigger when section is 70% from the top of the viewport
+            reverse: false    // Animation only happens once
+        })
+        .setClassToggle('#future-world-pavilions', 'is-visible') // Add 'is-visible' class to the section
+        .addTo(controller);
+    } else {
+        console.error("Future World Pavilions section not found for fade-in animation.");
+    }
 });
