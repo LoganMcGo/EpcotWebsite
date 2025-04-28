@@ -533,6 +533,8 @@ section {
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+    position: relative; /* Needed for z-index stacking */
+    z-index: 1; /* Ensure content is above the section's ::before overlay */
 }
 
 .worlds-boxes {
@@ -551,6 +553,12 @@ section {
     transition: all 0.4s ease;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
     overflow: visible; /* Changed from hidden to allow content to overflow */
+}
+
+/* Make the hovered box itself transparent */
+.world-box:hover {
+    background-color: transparent;
+    box-shadow: none;
 }
 
 .box-content {
@@ -656,68 +664,81 @@ section {
     border-bottom-right-radius: 20px;
 }
 
-/* Completely new approach for hover effects */
-#world-showcase-box:hover .box-content,
-#future-world-box:hover .box-content {
+/* --- Revised Hover Effects using :has() --- */
+
+/* Hide initial content when its box is hovered */
+.world-box:hover .box-content {
     opacity: 0;
+    transition: opacity 0.4s ease;
 }
 
-/* Make the hover content a full-screen overlay */
+/* Style the hover content overlay */
 #world-showcase-box .box-hover-content,
 #future-world-box .box-hover-content {
-    position: fixed;
+    position: fixed; /* Keep as fixed for overlay effect */
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 80%;
-    max-width: 1200px;
+    width: 100%; /* Further increased width */
+    max-width: 1600px; /* Further increased max-width */
     height: auto;
-    max-height: 80vh;
+    max-height: 85vh; /* Slightly increased max-height */
     overflow-y: auto;
+    /* Inherits background, padding, etc. from .box-hover-content */
+    /* Inherits opacity, visibility, transition from .box-hover-content */
+    /* Inherits z-index, box-shadow from .box-hover-content */
 }
 
-#world-showcase-box:hover .box-hover-content,
-#future-world-box:hover .box-hover-content {
+/* Specific adjustment for Future World hover box position and height */
+#future-world-box .box-hover-content {
+    transform: translate(-50%, -65%); /* Nudge significantly upwards */
+    max-height: 90vh; /* Increase max height specifically for this box */
+}
+
+/* Show the hover content when its box is hovered */
+.world-box:hover .box-hover-content {
     opacity: 1;
     visibility: visible;
     transition: opacity 0.7s ease, visibility 0s; /* No delay on visibility when showing */
 }
 
-/* Hide the other box when one is hovered */
-#world-showcase-box:hover ~ #future-world-box,
-#future-world-box:hover ~ #world-showcase-box {
+/* Hide the non-hovered box completely */
+.worlds-boxes:has(#world-showcase-box:hover) #future-world-box,
+.worlds-boxes:has(#future-world-box:hover) #world-showcase-box {
     opacity: 0;
-    transition: opacity 0.7s ease;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
-/* Create a semi-transparent overlay for the background when a box is hovered */
-.worlds-container::before {
+/* Create and manage the background dimming overlay *within the section* */
+#two-worlds-section::before { /* Apply to section instead of container */
     content: '';
-    position: fixed;
+    position: absolute; /* Position relative to the section */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 90;
+    background-color: rgba(0, 0, 0, 0.8); /* Slightly darker overlay */
+    z-index: 0; /* Behind the .worlds-container content (z-index: 1) */
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.7s ease, visibility 0s linear 0.7s;
-    pointer-events: none;
+    pointer-events: none; /* Allow clicks through */
 }
 
-#world-showcase-box:hover ~ .worlds-container::before,
-#future-world-box:hover ~ .worlds-container::before {
+/* Show the background overlay when either box is hovered */
+#two-worlds-section:has(.world-box:hover)::before { /* Target section's ::before */
     opacity: 1;
     visibility: visible;
     transition: opacity 0.7s ease, visibility 0s;
 }
 
-#world-showcase-box:hover ~ .map-container #world-showcase-overlay {
+/* Highlight the correct map overlay */
+.worlds-container:has(#world-showcase-box:hover) .map-container #world-showcase-overlay {
     opacity: 1;
 }
 
-#future-world-box:hover ~ .map-container #future-world-overlay {
+.worlds-container:has(#future-world-box:hover) .map-container #future-world-overlay {
     opacity: 1;
 }
 
@@ -752,4 +773,100 @@ section {
     opacity: 1;
     transform: translateY(0);
     transition-delay: 2.0s;
+}
+
+/* Stats Section */
+#stats-section {
+    background-image: url('Assets/Opening-Years-Assets/BlueprintBackground.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 50px; /* Added more padding */
+    min-height: 100vh;
+    z-index: 7; /* Ensure it's above the previous section */
+    position: relative;
+    display: flex; /* Use flex to center the content box */
+    justify-content: center;
+    align-items: center;
+}
+
+#stats-content-box {
+    background-color: rgba(60, 90, 130, 0.9); /* Semi-transparent blue from image */
+    color: #E3E8EA; /* Light text color */
+    padding: 40px 50px;
+    border-radius: 30px;
+    max-width: 1200px; /* Limit width */
+    width: 90%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    /* Opacity and transform are handled by .fade-in-item class */
+}
+
+#stats-content-box h2 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 4em;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 40px;
+    color: #E3E8EA;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.stats-columns {
+    display: flex;
+    gap: 50px; /* Space between columns */
+    justify-content: space-between;
+}
+
+.stats-column {
+    flex: 1; /* Each column takes equal space */
+}
+
+.stats-column h3 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 2.2em;
+    color: #AADADB; /* Accent color */
+    margin-bottom: 15px;
+    border-bottom: 2px solid #AADADB;
+    padding-bottom: 8px;
+}
+
+.stats-column ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0; /* Space below each list */
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3em; /* Slightly smaller font for list items */
+    line-height: 1.7;
+}
+
+.stats-column li {
+    margin-bottom: 10px;
+    padding-left: 25px; /* Indent list items */
+    position: relative;
+}
+
+/* Custom bullet points using ::before */
+.stats-column li::before {
+    content: '•'; /* Bullet character */
+    color: #AADADB; /* Accent color */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.5em; /* Position bullet correctly */
+    position: absolute;
+    left: 15px; /* Adjust left positioning */
+    top: 0;
+}
+
+.stats-column strong {
+    font-weight: 600; /* Make strong text slightly bolder */
+    color: #fff; /* White color for emphasis */
+}
+
+/* Fade-in animation trigger for stats section */
+#stats-section.is-visible #stats-content-box {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.5s; /* Delay the fade-in slightly */
 }

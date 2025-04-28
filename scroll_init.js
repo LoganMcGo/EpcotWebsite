@@ -202,4 +202,19 @@ document.addEventListener('DOMContentLoaded', function () {
         // The CSS handles most of the hover effects, but we can add additional functionality here if needed
         console.log("World boxes initialized for hover effects");
     }
+
+    // Stats Section Animation
+    const statsSection = document.querySelector('#stats-section');
+
+    if (statsSection) {
+        new ScrollMagic.Scene({
+            triggerElement: '#stats-section',
+            triggerHook: 0.7, // Trigger when section is 70% from the top of the viewport
+            reverse: false    // Animation only happens once
+        })
+        .setClassToggle('#stats-section', 'is-visible') // Add 'is-visible' class to the section
+        .addTo(controller);
+    } else {
+        console.error("Stats section not found for fade-in animation.");
+    }
 });
