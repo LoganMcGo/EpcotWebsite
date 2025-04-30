@@ -17,8 +17,8 @@
                 <h1>Opening Day</h1>
                 <p class="year">1982</p>
                 <div class="hero-buttons">
-                    <button>Map</button>
-                    <button>Media</button>
+                    <button id="map-scroll-button">Map</button>
+                    <button id="media-scroll-button">Media</button>
                 </div>
             </div>
         </section>
@@ -65,7 +65,7 @@
         <section id="core-concepts-section">
             <div class="concept-text-container fade-in-item">
                 <p>In the early 1970s, a new idea began to take shape: EPCOT would become a theme park, not a residential city—but one unlike anything ever built. Rather than fantasy or fairy tales, this park would be rooted in reality: technology, science, industry, and global unity.</p>
-                <p>“We determined that no one company or organization could bring Walt’s concept to life in its original form. But we did feel we could build a new kind of theme park that would reflect his optimism, creativity, and belief in the future.” – Card Walker, CEO of Disney in the 1970s</p>
+                <p>"We determined that no one company or organization could bring Walt's concept to life in its original form. But we did feel we could build a new kind of theme park that would reflect his optimism, creativity, and belief in the future." – Card Walker, CEO of Disney in the 1970s</p>
             </div>
 
             <div class="concept-grid-container">
@@ -202,88 +202,60 @@
         <section id="future-world-pavilions">
             <h2 class="fade-in-item">THE PAVILIONS OF FUTURE WORLD</h2>
             
-            <div class="pavilions-grid">
-                <!-- Spaceship Earth -->
-                <div class="pavilion-card fade-in-item" data-tooltip="Fun Fact: Spaceship Earth weighs 16 million pounds and contains 11,324 triangular panels.">
-                    <div class="card-inner">
-                        <div class="pavilion-icon">
-                            <img src="Assets/Opening-Years-Assets/spaceshipearthicon.png" alt="Spaceship Earth Icon">
-                        </div>
-                        <div class="pavilion-content">
-                            <h3>Spaceship Earth</h3>
+            <div class="pavilion-circle-container">
+                <!-- Central Fun Fact Box -->
+                <div class="fun-fact-box fade-in-item">
+                    <h3>Future World Fun Facts</h3>
+                    <p id="future-world-fun-fact">Hover over a pavilion to learn more about it!</p>
+                </div>
+                
+                <!-- Pavilion Circle -->
+                <div class="pavilion-circle">
+                    <!-- Spaceship Earth -->
+                    <div class="pavilion-item fade-in-item" data-pavilion="spaceship-earth" data-fun-fact="Spaceship Earth weighs 16 million pounds and contains 11,324 triangular panels.">
+                        <img src="Assets/Opening-Years-Assets/spaceshipearthicon.png" alt="Spaceship Earth Icon">
+                        <div class="pavilion-info-circle">
                             <p>A journey through the history of communication inside a giant geodesic sphere.</p>
-                            <div class="epcot-mini-logo"></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Universe of Energy -->
-                <div class="pavilion-card fade-in-item" data-tooltip="Fun Fact: The Universe of Energy's roof was covered with 80,000 photovoltaic cells that partially powered the attraction.">
-                    <div class="card-inner">
-                        <div class="pavilion-icon">
-                            <img src="Assets/Opening-Years-Assets/UniofEnergyicon.png" alt="Universe of Energy Icon">
-                        </div>
-                        <div class="pavilion-content">
-                            <h3>Universe of Energy</h3>
+                    
+                    <!-- Universe of Energy -->
+                    <div class="pavilion-item fade-in-item" data-pavilion="universe-of-energy" data-fun-fact="The Universe of Energy's roof was covered with 80,000 photovoltaic cells that partially powered the attraction.">
+                        <img src="Assets/Opening-Years-Assets/UniofEnergyicon.png" alt="Universe of Energy Icon">
+                        <div class="pavilion-info-circle">
                             <p>A moving theater experience exploring fossil fuels and solar energy.</p>
-                            <div class="epcot-mini-logo"></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- World of Motion -->
-                <div class="pavilion-card fade-in-item" data-tooltip="Fun Fact: World of Motion featured 73 Audio-Animatronic figures and over 180 props in its humorous scenes.">
-                    <div class="card-inner">
-                        <div class="pavilion-icon">
-                            <img src="Assets/Opening-Years-Assets/worldofmotionicon.png" alt="World of Motion Icon">
-                        </div>
-                        <div class="pavilion-content">
-                            <h3>World of Motion</h3>
+                    
+                    <!-- World of Motion -->
+                    <div class="pavilion-item fade-in-item" data-pavilion="world-of-motion" data-fun-fact="World of Motion featured 73 Audio-Animatronic figures and over 180 props in its humorous scenes.">
+                        <img src="Assets/Opening-Years-Assets/worldofmotionicon.png" alt="World of Motion Icon">
+                        <div class="pavilion-info-circle">
                             <p>A humorous ride through the history of transportation.</p>
-                            <div class="epcot-mini-logo"></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Journey into Imagination -->
-                <div class="pavilion-card fade-in-item" data-tooltip="Fun Fact: Figment was created when Imagineer Tony Baxter combined the words 'figure' and 'imagination.'">
-                    <div class="card-inner">
-                        <div class="pavilion-icon">
-                            <img src="Assets/Opening-Years-Assets/jouintoimaginicon.png" alt="Journey into Imagination Icon">
-                        </div>
-                        <div class="pavilion-content">
-                            <h3>Journey into Imagination</h3>
-                            <p>Creativity explored through Dreamfinder and Figment.</p>
-                            <div class="epcot-mini-logo"></div>
-                            <div class="opening-note">(Opening 1983)</div>
+                    
+                    <!-- Journey into Imagination -->
+                    <div class="pavilion-item fade-in-item" data-pavilion="journey-into-imagination" data-fun-fact="Figment was created when Imagineer Tony Baxter combined the words 'figure' and 'imagination.'">
+                        <img src="Assets/Opening-Years-Assets/jouintoimaginicon.png" alt="Journey into Imagination Icon">
+                        <div class="pavilion-info-circle">
+                            <p>Creativity explored through Dreamfinder and Figment. (Opening 1983)</p>
                         </div>
                     </div>
-                </div>
-                
-                <!-- The Land -->
-                <div class="pavilion-card fade-in-item" data-tooltip="Fun Fact: The Land's greenhouse uses hydroponic techniques to grow over 30 tons of produce annually.">
-                    <div class="card-inner">
-                        <div class="pavilion-icon">
-                            <img src="Assets/Opening-Years-Assets/thelandicon.png" alt="The Land Icon">
-                        </div>
-                        <div class="pavilion-content">
-                            <h3>The Land</h3>
+                    
+                    <!-- The Land -->
+                    <div class="pavilion-item fade-in-item" data-pavilion="the-land" data-fun-fact="The Land's greenhouse uses hydroponic techniques to grow over 30 tons of produce annually.">
+                        <img src="Assets/Opening-Years-Assets/thelandicon.png" alt="The Land Icon">
+                        <div class="pavilion-info-circle">
                             <p>Innovations in farming, food, and ecology.</p>
-                            <div class="epcot-mini-logo"></div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- CommuniCore -->
-                <div class="pavilion-card fade-in-item" data-tooltip="Fun Fact: CommuniCore's EPCOT Computer Central housed the world's largest installation of touchscreen technology at the time.">
-                    <div class="card-inner">
-                        <div class="pavilion-icon">
-                            <img src="Assets/Opening-Years-Assets/communicoreicon.png" alt="CommuniCore Icon">
-                        </div>
-                        <div class="pavilion-content">
-                            <h3>CommuniCore</h3>
+                    
+                    <!-- CommuniCore -->
+                    <div class="pavilion-item fade-in-item" data-pavilion="communicore" data-fun-fact="CommuniCore's EPCOT Computer Central housed the world's largest installation of touchscreen technology at the time.">
+                        <img src="Assets/Opening-Years-Assets/communicoreicon.png" alt="CommuniCore Icon">
+                        <div class="pavilion-info-circle">
                             <p>Hands-on technology exhibits showcasing computers and innovation.</p>
-                            <div class="epcot-mini-logo"></div>
                         </div>
                     </div>
                 </div>
@@ -295,6 +267,190 @@
                 <p>Opening in 1983, a journey into 21st century living</p>
             </div>
         </section>
+
+    <!-- World Showcase Pavilions Section -->
+    <section id="world-showcase-pavilions">
+        <h2 class="fade-in-item">THE PAVILIONS OF WORLD SHOWCASE</h2>
+        
+        <div class="pavilion-circle-container">
+            <!-- Central Fun Fact Box -->
+            <div class="fun-fact-box fade-in-item">
+                <h3>World Showcase Fun Facts</h3>
+                <p id="world-showcase-fun-fact">Hover over a pavilion to learn more about it!</p>
+            </div>
+            
+            <!-- Pavilion Circle -->
+            <div class="pavilion-circle">
+                <!-- Mexico -->
+                <div class="pavilion-item fade-in-item" data-pavilion="mexico" data-fun-fact="The Mexico pavilion houses a boat ride called 'Gran Fiesta Tour Starring The Three Caballeros' inside its pyramid.">
+                    <img src="Assets/Opening-Years-Assets/Mexicoicon.png" alt="Mexico Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>Mexico</h3>
+                        <p>Mayan pyramid facade with a boat ride inside.</p>
+                    </div>
+                </div>
+                
+                <!-- China -->
+                <div class="pavilion-item fade-in-item" data-pavilion="china" data-fun-fact="The China pavilion's film 'Reflections of China' was shot with special cameras to create the 360° viewing experience.">
+                    <img src="Assets/Opening-Years-Assets/Chinaicon.png" alt="China Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>China</h3>
+                        <p>CircleVision 360° film showing the beauty of China.</p>
+                    </div>
+                </div>
+                
+                <!-- Germany -->
+                <div class="pavilion-item fade-in-item" data-pavilion="germany" data-fun-fact="Germany's pavilion features a miniature train village with detailed replicas of German landmarks.">
+                    <img src="Assets/Opening-Years-Assets/Germanyicon.png" alt="Germany Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>Germany</h3>
+                        <p>Bavarian village square, food, and culture.</p>
+                    </div>
+                </div>
+                
+                <!-- Italy -->
+                <div class="pavilion-item fade-in-item" data-pavilion="italy" data-fun-fact="The Italy pavilion's architecture is inspired by Venice's St. Mark's Square and features a replica of the Doge's Palace.">
+                    <img src="Assets/Opening-Years-Assets/Italyicon.png" alt="Italy Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>Italy</h3>
+                        <p>Architecture inspired by Venice and Rome.</p>
+                    </div>
+                </div>
+                
+                <!-- The American Adventure -->
+                <div class="pavilion-item fade-in-item" data-pavilion="american-adventure" data-fun-fact="The American Adventure show features 35 Audio-Animatronic figures and required innovative engineering to fit the complex show mechanisms in a limited space.">
+                    <img src="Assets/Opening-Years-Assets/TheAmericanAdventureicon.png" alt="American Adventure Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>The American Adventure</h3>
+                        <p>A grand show animating America's story.</p>
+                    </div>
+                </div>
+                
+                <!-- Japan -->
+                <div class="pavilion-item fade-in-item" data-pavilion="japan" data-fun-fact="Japan's pagoda is a replica of the 7th-century Horyuji Temple, and the pavilion's gardens were designed using traditional Japanese landscaping techniques.">
+                    <img src="Assets/Opening-Years-Assets/Japanicon.png" alt="Japan Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>Japan</h3>
+                        <p>Traditional gardens and Mitsukoshi shopping.</p>
+                    </div>
+                </div>
+                
+                <!-- France -->
+                <div class="pavilion-item fade-in-item" data-pavilion="france" data-fun-fact="The France pavilion's Eiffel Tower uses forced perspective to appear taller than it actually is.">
+                    <img src="Assets/Opening-Years-Assets/Franceicon.png" alt="France Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>France</h3>
+                        <p>French streets, fine dining, and a film tribute.</p>
+                    </div>
+                </div>
+                
+                <!-- United Kingdom -->
+                <div class="pavilion-item fade-in-item" data-pavilion="united-kingdom" data-fun-fact="The United Kingdom pavilion combines architectural styles from different periods of British history, from Tudor to Victorian.">
+                    <img src="Assets/Opening-Years-Assets/UnitedKingdomicon.png" alt="United Kingdom Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>United Kingdom</h3>
+                        <p>Cobblestone streets, shops, and pubs.</p>
+                    </div>
+                </div>
+                
+                <!-- Canada -->
+                <div class="pavilion-item fade-in-item" data-pavilion="canada" data-fun-fact="Canada's pavilion features a 30-foot waterfall and a replica of the Château Laurier hotel in Ottawa.">
+                    <img src="Assets/Opening-Years-Assets/Canadaicon.png" alt="Canada Icon">
+                    <div class="pavilion-info-circle">
+                        <h3>Canada</h3>
+                        <p>Rocky waterfalls and a CircleVision 360° film about Canada.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Coming Soon Bubble for Morocco -->
+        <div class="coming-soon-bubble fade-in-item">
+            <h3>Coming Soon: Morocco</h3>
+            <p>Opening in 1984, featuring authentic Moroccan architecture</p>
+        </div>
+    </section>
+
+    <!-- Moving Forward Section -->
+    <section id="moving-forward-section">
+        <div class="moving-forward-content">
+            <!-- Intro Message -->
+            <div class="intro-message fade-in-item">
+                <h2>"EPCOT was always meant to grow."</h2>
+                <p>When the gates opened in 1982, EPCOT Center redefined what a theme park could be. Combining imagination, education, and global collaboration, it created something timeless. As new pavilions were built and fresh ideas took root, EPCOT began its journey of constant reinvention—a park never meant to stand still.</p>
+            </div>
+            
+            <!-- Timeline Ribbon -->
+            <div class="timeline-container fade-in-item">
+                <div class="timeline-line"></div>
+                
+                <!-- Timeline Milestones -->
+                <div class="timeline-milestone" data-year="1983">
+                    <div class="milestone-year">1983</div>
+                    <div class="milestone-dot"></div>
+                    <div class="milestone-content">
+                        <h3>Horizons</h3>
+                        <p>A journey into 21st century living opens in Future World</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-milestone" data-year="1984">
+                    <div class="milestone-year">1984</div>
+                    <div class="milestone-dot"></div>
+                    <div class="milestone-content">
+                        <h3>Morocco</h3>
+                        <p>Joins World Showcase with authentic architecture</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-milestone" data-year="1986">
+                    <div class="milestone-year">1986</div>
+                    <div class="milestone-dot"></div>
+                    <div class="milestone-content">
+                        <h3>The Living Seas</h3>
+                        <p>World's largest indoor ocean environment opens</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-milestone" data-year="1989">
+                    <div class="milestone-year">1989</div>
+                    <div class="milestone-dot"></div>
+                    <div class="milestone-content">
+                        <h3>Wonders of Life</h3>
+                        <p>Health and body pavilion debuts in Future World</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Closing Statement Banner -->
+            <div class="closing-banner fade-in-item">
+                <h2>The 21st century began at EPCOT in 1982. And it's still just beginning.</h2>
+                <div class="infinite-epcot">
+                    <img src="Assets/Opening-Years-Assets/epcotmodernlogo.png" alt="EPCOT Logo" class="orbiting-logo">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Gallery Section -->
+    <section id="gallery-section">
+        <h2>EPCOT Opening Day Gallery</h2>
+        <div class="gallery-grid">
+            <img src="Assets/Opening-Years-Assets/10.22.1982-epcot-grand-opening-1180x600.jpg" alt="EPCOT Grand Opening" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/6755526597_97c84f53ab_b.jpg" alt="EPCOT Historical Photo" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/aprdisneyland17562c_0.jpg" alt="EPCOT Construction" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/BlueprintBackground.png" alt="EPCOT Blueprint" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/Epcot-Opening-Day.jpg" alt="EPCOT Opening Day Celebration" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/epcotmap1982 1.png" alt="EPCOT Map 1982" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/epcotretro1.png" alt="Retro EPCOT Concept 1" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/epcotretro2.png" alt="Retro EPCOT Concept 2" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/epcotretro3.png" alt="Retro EPCOT Concept 3" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/epcotretro4.png" alt="Retro EPCOT Concept 4" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/GettyImages-517286082.webp" alt="EPCOT Historical Photo" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/herobackground.svg" alt="EPCOT Hero Background" class="gallery-item">
+            <img src="Assets/Opening-Years-Assets/novdisneyland17067f.jpg" alt="EPCOT Construction" class="gallery-item">
+        </div>
+    </section>
     </main>
 
     
