@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Epcot Site</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:,">
 </head>
 <body>
     
@@ -45,8 +46,8 @@
     </div>
 
     <script type="module">
-        
-        import { Fireworks } from './node_modules/fireworks-js/dist/index.es.js';
+        // Import Fireworks from CDN instead of node_modules
+        import { Fireworks } from 'https://cdn.jsdelivr.net/npm/fireworks-js@2.10.8/dist/index.es.js';
         
         
         document.addEventListener('DOMContentLoaded', () => {

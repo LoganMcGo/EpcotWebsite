@@ -10,6 +10,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let isScrolling = false;
     let currentSection = 0;
     
+    // Side Navigation Bar
+    const sideNav = document.getElementById('side-nav');
+    const navLinks = document.querySelectorAll('#side-nav a');
+    
     // Map button scroll functionality
     const mapButton = document.getElementById('map-scroll-button');
     const twoWorldsSection = document.getElementById('two-worlds-section');
@@ -385,5 +389,71 @@ document.addEventListener('DOMContentLoaded', function () {
         .addTo(controller);
     } else {
         console.error("Gallery section not found for animation.");
+    }
+    
+    // Side Navigation Bar Functionality
+    
+    // 1. Show the side nav when planning section comes into view
+    if (sideNav) {
+        new ScrollMagic.Scene({
+            triggerElement: '#planning',
+            triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+            reverse: true // Allow hiding when scrolling back up
+        })
+        .on('enter', function() {
+            sideNav.classList.add('visible');
+        })
+        .on('leave', function() {
+            sideNav.classList.remove('visible');
+        })
+        .addTo(controller);
+        
+        // 2. Handle navigation link clicks
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href').substring(1); // Remove the # from the href
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    // Find the index of the target section in the sections NodeList
+                    for (let i = 0; i < sections.length; i++) {
+                        if (sections[i] === targetSection) {
+                            scrollToSection(i);
+                            break;
+                        }
+                    }
+                }
+            });
+        });
+        
+        // 3. Update active link based on current section
+        const sectionIds = Array.from(navLinks).map(link => 
+            link.getAttribute('href').substring(1) // Get all section IDs from nav links
+        );
+        
+        // Create a scene for each section to update the active link
+        sectionIds.forEach(sectionId => {
+            const section = document.getElementById(sectionId);
+            if (section) {
+                new ScrollMagic.Scene({
+                    triggerElement: `#${sectionId}`,
+                    triggerHook: 0.5, // Middle of the viewport
+                    duration: '100%' // Scene lasts for the entire section height
+                })
+                .on('enter', function() {
+                    // Remove active class from all links
+                    navLinks.forEach(link => link.classList.remove('active'));
+                    
+                    // Add active class to the corresponding link
+                    const activeLink = document.querySelector(`#side-nav a[href="#${sectionId}"]`);
+                    if (activeLink) {
+                        activeLink.classList.add('active');
+                    }
+                })
+                .addTo(controller);
+            }
+        });
     }
 });
