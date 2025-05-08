@@ -361,6 +361,31 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("Moving Forward section not found for fade-in animation.");
     }
     
+    // Vision Section (for Original Design page) - No animation
+    const visionSection = document.querySelector('#vision-section');
+    
+    // Radial Design Section (for Original Design page) - No animation
+    const radialDesignSection = document.querySelector('#radial-design-section');
+    
+    // Infrastructure Section (for Original Design page) - No animation
+    const infrastructureSection = document.querySelector('#infrastructure-section');
+    
+    // Living Environment Section (for Original Design page) - No animation
+    const livingEnvironmentSection = document.querySelector('#living-environment-section');
+    
+    // Film & Model Section Animation (for Original Design page)
+    const filmModelSection = document.querySelector('#film-model-section');
+
+    if (filmModelSection) {
+        new ScrollMagic.Scene({
+            triggerElement: '#film-model-section',
+            triggerHook: 0.7, // Trigger when section is 70% from the top of the viewport
+            reverse: false    // Animation only happens once
+        })
+        .setClassToggle('#film-model-section', 'is-visible') // Add 'is-visible' class to the section
+        .addTo(controller);
+    }
+    
     // Gallery Section Animation
     if (gallerySection) {
         new ScrollMagic.Scene({
@@ -391,40 +416,195 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error("Gallery section not found for animation.");
     }
     
+    // Introduction Section Animation (for 80s_90s.html)
+    const eraIntroductionSection = document.querySelector('#era-introduction');
+    
+    if (eraIntroductionSection) {
+        new ScrollMagic.Scene({
+            triggerElement: '#era-introduction',
+            triggerHook: 0.7, // Trigger when section is 70% from the top of the viewport
+            reverse: false    // Animation only happens once
+        })
+        .setClassToggle('#era-introduction', 'is-visible') // Add 'is-visible' class to the section
+        .addTo(controller);
+        
+        // Fade in the intro text
+        const introTextContainer = document.querySelector('.intro-text-container');
+        if (introTextContainer) {
+            new ScrollMagic.Scene({
+                triggerElement: '.intro-text-container',
+                triggerHook: 0.8,
+                reverse: false
+            })
+            .setTween(gsap.to(introTextContainer, { opacity: 1, y: 0, duration: 1.5, ease: "power1.inOut" }))
+            .addTo(controller);
+        }
+    }
+    
+    // Future World Additions Section Animation (for 80s_90s.html)
+    const futureWorldSection = document.querySelector('#future-world-additions');
+    
+    if (futureWorldSection) {
+        // Animate the future world pavilion cards with staggered delay
+        const futureWorldCards = document.querySelectorAll('#future-world-additions .pavilion-card');
+        
+        // Add animation classes with delays to create staggered effect
+        if (futureWorldCards.length > 0) {
+            futureWorldCards.forEach((card, index) => {
+                card.classList.add(`delay-${index * 100}`);
+                
+                new ScrollMagic.Scene({
+                    triggerElement: card.parentElement,
+                    triggerHook: 0.8,
+                    reverse: false
+                })
+                .on('enter', function() {
+                    card.classList.add('fade-in');
+                })
+                .addTo(controller);
+            });
+        }
+    }
+    
+    // World Showcase Grows Section Animation (for 80s_90s.html)
+    const worldShowcaseSection = document.querySelector('#world-showcase-grows');
+    
+    if (worldShowcaseSection) {
+        // Animate the world showcase pavilion cards with staggered delay
+        const worldShowcaseCards = document.querySelectorAll('#world-showcase-grows .pavilion-card');
+        const unbuiltPavilions = document.querySelector('.unbuilt-pavilions');
+        
+        // Add animation classes with delays to create staggered effect
+        if (worldShowcaseCards.length > 0) {
+            worldShowcaseCards.forEach((card, index) => {
+                card.classList.add(`delay-${index * 100}`);
+                
+                new ScrollMagic.Scene({
+                    triggerElement: card.parentElement,
+                    triggerHook: 0.8,
+                    reverse: false
+                })
+                .on('enter', function() {
+                    card.classList.add('fade-in');
+                })
+                .addTo(controller);
+            });
+        }
+        
+        // Animate the unbuilt pavilions note
+        if (unbuiltPavilions) {
+            new ScrollMagic.Scene({
+                triggerElement: unbuiltPavilions,
+                triggerHook: 0.85,
+                reverse: false
+            })
+            .on('enter', function() {
+                unbuiltPavilions.classList.add('fade-in');
+            })
+            .addTo(controller);
+        }
+    }
+    
     // Side Navigation Bar Functionality
     
-    // 1. Show the side nav when planning section comes into view
+    // 1. Show the side nav when planning section, vision section, or pavilion growth section comes into view
     if (sideNav) {
-        new ScrollMagic.Scene({
-            triggerElement: '#planning',
-            triggerHook: 0.8, // Show a bit earlier than the section is fully visible
-            reverse: true // Allow hiding when scrolling back up
-        })
-        .on('enter', function() {
-            sideNav.classList.add('visible');
-        })
-        .on('leave', function() {
-            sideNav.classList.remove('visible');
-        })
-        .addTo(controller);
+        // For opening_day.html - planning section
+        const planningSection = document.querySelector('#planning');
+        if (planningSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#planning',
+                triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+                reverse: true // Allow hiding when scrolling back up
+            })
+            .on('enter', function() {
+                sideNav.classList.add('visible');
+            })
+            .on('leave', function() {
+                sideNav.classList.remove('visible');
+            })
+            .addTo(controller);
+        }
+        
+        // For original_design.html - vision section
+        const visionSection = document.querySelector('#vision-section');
+        if (visionSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#vision-section',
+                triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+                reverse: true // Allow hiding when scrolling back up
+            })
+            .on('enter', function() {
+                sideNav.classList.add('visible');
+            })
+            .on('leave', function() {
+                sideNav.classList.remove('visible');
+            })
+            .addTo(controller);
+        }
+        
+        // For 80s_90s.html - introduction, future world, and world showcase sections
+        if (eraIntroductionSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#era-introduction',
+                triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+                reverse: true // Allow hiding when scrolling back up
+            })
+            .on('enter', function() {
+                sideNav.classList.add('visible');
+            })
+            .on('leave', function() {
+                sideNav.classList.remove('visible');
+            })
+            .addTo(controller);
+        }
+        
+        if (futureWorldSection) {
+            // Side nav is already visible from introduction section, so we don't need to add/remove the visible class here
+            // But we'll keep this scene for updating the active link
+            new ScrollMagic.Scene({
+                triggerElement: '#future-world-additions',
+                triggerHook: 0.5,
+                reverse: true
+            })
+            .addTo(controller);
+        }
+        
+        if (worldShowcaseSection) {
+            // Side nav is already visible from introduction section, so we don't need to add/remove the visible class here
+            // But we'll keep this scene for updating the active link
+            new ScrollMagic.Scene({
+                triggerElement: '#world-showcase-grows',
+                triggerHook: 0.5,
+                reverse: true
+            })
+            .addTo(controller);
+        }
         
         // 2. Handle navigation link clicks
         navLinks.forEach(link => {
             link.addEventListener('click', function(e) {
-                e.preventDefault();
+                const href = this.getAttribute('href');
                 
-                const targetId = this.getAttribute('href').substring(1); // Remove the # from the href
-                const targetSection = document.getElementById(targetId);
-                
-                if (targetSection) {
-                    // Find the index of the target section in the sections NodeList
-                    for (let i = 0; i < sections.length; i++) {
-                        if (sections[i] === targetSection) {
-                            scrollToSection(i);
-                            break;
+                // Only prevent default for section links (those with #)
+                // Allow direct navigation for links like index.html
+                if (href.startsWith('#')) {
+                    e.preventDefault();
+                    
+                    const targetId = href.substring(1); // Remove the # from the href
+                    const targetSection = document.getElementById(targetId);
+                    
+                    if (targetSection) {
+                        // Find the index of the target section in the sections NodeList
+                        for (let i = 0; i < sections.length; i++) {
+                            if (sections[i] === targetSection) {
+                                scrollToSection(i);
+                                break;
+                            }
                         }
                     }
                 }
+                // For non-section links (like index.html), let the browser handle navigation normally
             });
         });
         
@@ -453,6 +633,52 @@ document.addEventListener('DOMContentLoaded', function () {
                     }
                 })
                 .addTo(controller);
+            }
+        });
+    }
+    
+    // Gallery Modal Functionality
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    const modal = document.getElementById('gallery-modal');
+    const modalImage = document.getElementById('modal-image-content');
+    const closeModalButton = document.querySelector('.modal-close-button');
+
+    if (modal && modalImage && closeModalButton) {
+        galleryItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const imgSrc = this.getAttribute('src');
+                const imgAlt = this.getAttribute('alt');
+                
+                modalImage.setAttribute('src', imgSrc);
+                modalImage.setAttribute('alt', "Enlarged: " + imgAlt);
+                
+                modal.classList.add('visible');
+                // Disable body scroll when modal is open
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        // Function to close the modal
+        function closeModal() {
+            modal.classList.remove('visible');
+            // Re-enable body scroll
+            document.body.style.overflow = '';
+        }
+
+        // Close modal when the close button is clicked
+        closeModalButton.addEventListener('click', closeModal);
+
+        // Close modal when clicking outside the image (on the modal background)
+        modal.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && modal.classList.contains('visible')) {
+                closeModal();
             }
         });
     }

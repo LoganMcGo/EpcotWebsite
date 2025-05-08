@@ -1688,13 +1688,65 @@ section {
     object-fit: cover;
     border-radius: 15px;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
 }
 
 .gallery-item:hover {
     transform: scale(1.05);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-    z-index: 1; /* Bring hovered image to front */
+    z-index: 2;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content-image {
+    margin: auto;
+    display: block;
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: #bbb;
+    text-decoration: none;
 }
 
 /* Gallery section fade-in animations */
@@ -1765,69 +1817,6 @@ section {
     
     .timeline-line {
         display: none;
-    }
-}
-
-@media (max-width: 768px) {
-    .pavilions-grid {
-        grid-template-columns: 1fr; /* 1 card per row on small screens */
-    }
-    
-    #future-world-pavilions h2, #world-showcase-pavilions h2 {
-        font-size: 3.5em;
-    }
-    
-    .coming-soon-bubble {
-        position: relative;
-        bottom: auto;
-        right: auto;
-        margin-top: 40px;
-    }
-    
-    .pavilion-circle-container {
-        height: auto;
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .fun-fact-box {
-        position: relative;
-        width: 90%;
-        margin-bottom: 30px;
-    }
-    
-    .pavilion-circle {
-        position: relative;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 20px;
-        width: 100%;
-    }
-    
-    .pavilion-item {
-        position: relative;
-        top: auto;
-        left: auto;
-        transform: none;
-        width: 100%;
-        height: auto;
-        aspect-ratio: 1/1;
-    }
-    
-    .intro-message h2,
-    .closing-banner h2 {
-        font-size: 2.5em;
-    }
-    
-    .intro-message p {
-        font-size: 1.3em;
-    }
-    
-    .timeline-container {
-        height: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
     }
 }
 
