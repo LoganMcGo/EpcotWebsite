@@ -188,81 +188,129 @@ body {
 }
 
 .era-group {
-    position: absolute;
-    top: 39.45%;
-    left: 76.62%;
-    transform: translate(-50%, -38%) scale(0.7);
-    width: 70%;
-    height: 40%;
+    position: fixed;
+    top: 72%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70vmin;
+    height: 70vmin;
     z-index: 5;
-    pointer-events: none; 
+    pointer-events: none;
 }
 
 .era-group img {
-    position: relative;
+    position: absolute;
     display: block;
     transition: transform 0.3s ease; 
     cursor: pointer; 
-    pointer-events: auto; 
+    pointer-events: auto;
+    width: 10vmin;
+    height: 10vmin;
 }
 
+/* Fixed position elements that should stay with era group */
+.inner-ball {
+    position: fixed;
+    top: 67%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1.4);
+    z-index: 3;
+    max-width: 30vmin;
+}
+
+.ball-feet {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, 50%) scale(1.7);
+    z-index: 1;
+    max-width: 35vmin;
+}
+
+/* Individual scaling adjustments */
+img.original-design {
+    transform: scale(2.04);
+}
+
+img.opening-years {
+    transform: scale(2.74);
+}
+
+img.era-82-90 {
+    transform: scale(2.75);
+}
+
+img.era-90-00 {
+    transform: scale(2.04);
+}
+
+img.era-00-15 {
+    transform: scale(2.74);
+}
+
+img.gallery {
+    transform: scale(2.74);
+}
+
+/* Hover effects */
 .original-design:hover {
-    transform: scale(1.1) translate(5px, -5px); 
+    transform: translate(4px, -8px) scale(2.25);
 }
 
 .opening-years:hover {
-    transform: scale(1.1) translate(10px, 5px); 
+    transform: translate(8px, 2px) scale(3);
 }
 
 .era-82-90:hover {
-    transform: scale(1.1) translate(0px, 8px); 
+    transform: translate(2px, 8px) scale(3);
 }
 
 .era-90-00:hover {
-    transform: scale(1.1) translate(-8px, 8px); 
+    transform: translate(-6px, 6px) scale(2.25);
 }
 
 .era-00-15:hover {
-    transform: scale(1.1) translate(-10px, 0px); 
+    transform: translate(-8px, -2px) scale(3);
 }
 
 .gallery:hover {
-    transform: scale(1.1) translate(-3px, -8px); 
+    transform: translate(-2px, -8px) scale(3);
 }
 
+/* Position each era */
 .original-design {
-    top: 30%;
-    left: -4.2%;
+    top: 15.1%;
+    left: 57.8%;
     z-index: 5;
 }
 
 .opening-years {
-    top: 1%;
-    left: .5%;
+    top: 38.3%;
+    left: 68%;
     z-index: 5;
 }
 
 .era-82-90 {
-    top: -52%;
-    left: -12.2%;
+    top: 58.8%;
+    left: 53.2%;
     z-index: 5;
 }
 
 .era-90-00 {
-    top: -153.3%;
-    left: -29.8%;
+    top: 56.2%;
+    left: 27.9%;
     z-index: 5;
 }
 
 .era-00-15 {
-    top: -310.8%;
-    left: -42.6%;
+    top: 33%;
+    left: 17.5%;
     z-index: 5;
 }
 
 .gallery {
-    top: -477%;
-    left: -29.8%;
+    top: 12.46%;
+    left: 32.5%;
     z-index: 5;
 }
 
@@ -271,22 +319,6 @@ body {
     top: 15%;
     left: 50%;
     transform: translate(-50%, -30%) scale(0.9);
-    z-index: 4;
-}
-
-.ball-feet {
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translateX(-50%) translateY(35%) scale(0.7); 
-    z-index: 1;
-}
-
-.inner-ball {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%) translateY(-3.7%) scale(0.7);
     z-index: 4;
 }
 

@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: 'World Bold';
-    src: url('Assets/fonts/6129.ttf') format('truetype');
+    src: url('Assets/Fonts/6129.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -420,7 +420,7 @@ section {
     position: relative; 
     overflow: hidden; 
     border-radius: 30px;
-    aspect-ratio: 2 / 1; /* Changed from 3/1 to 2/1 to make it taller */
+    aspect-ratio: 2 / 1;
     cursor: pointer;
     opacity: 0; 
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
@@ -441,12 +441,12 @@ section {
     box-sizing: border-box;
     transition: transform 0.5s ease-in-out;
     display: flex;
-    justify-content: flex-end; /* Align content to the right */
+    justify-content: flex-end;
 }
 
 .card-visible img {
     height: 100%;
-    width: auto; /* Let width be determined by height */
+    width: auto;
     object-fit: cover;
     transition: none;
 }
@@ -454,12 +454,12 @@ section {
 .card-hidden {
     position: absolute;
     top: 0;
-    right: 0; /* Position text on the right side */
+    right: 0;
     width: 50%;
     height: 100%;
     background-color: #2c3e50;
     color: #eee;
-    border-radius: 30px; /* Rounded corners only on the right side */
+    border-radius: 30px;
     display: flex;
     align-items: center;
     padding: 30px;
@@ -477,12 +477,11 @@ section {
 
 
 .concept-card:hover .card-visible {
-    transform: translateX(-50%); /* Move the image container to the left, but keep it partially visible */
+    transform: translateX(-50%);
 }
 
-/* Add a subtle background to the card to ensure it looks good when image slides away */
 .concept-card {
-    background-color: #1a2a3a; /* Dark blue background that complements the text area */
+    background-color: #1a2a3a;
 }
 
 
@@ -533,8 +532,8 @@ section {
     justify-content: space-between;
     align-items: center;
     gap: 40px;
-    position: relative; /* Needed for z-index stacking */
-    z-index: 1; /* Ensure content is above the section's ::before overlay */
+    position: relative; 
+    z-index: 1; 
 }
 
 .worlds-boxes {
@@ -552,17 +551,17 @@ section {
     cursor: pointer;
     transition: all 0.4s ease;
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
-    overflow: visible; /* Changed from hidden to allow content to overflow */
+    overflow: visible; 
 }
 
-/* Make the hovered box itself transparent */
-.world-box:hover {
+/* Make the active box itself transparent */
+.world-box.active-box {
     background-color: transparent;
     box-shadow: none;
 }
 
 .box-content {
-    transition: opacity 0.7s ease; /* Slower fade-out for smoother transition */
+    transition: opacity 0.7s ease; 
 }
 
 .world-box h3 {
@@ -584,15 +583,15 @@ section {
     top: 0;
     left: 0;
     width: 100%;
-    height: auto; /* Allow height to expand */
+    height: auto;
     background-color: rgba(0, 0, 0, 0.95);
     padding: 40px;
     box-sizing: border-box;
     opacity: 0;
-    visibility: hidden; /* Start hidden */
-    transition: opacity 0.7s ease, visibility 0s linear 0.7s; /* Delay visibility change */
+    visibility: hidden; 
+    transition: opacity 0.7s ease, visibility 0s linear 0.7s; 
     border-radius: 30px;
-    z-index: 100; /* Ensure it appears on top of everything */
+    z-index: 100; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
 }
 
@@ -664,10 +663,8 @@ section {
     border-bottom-right-radius: 20px;
 }
 
-/* --- Revised Hover Effects using :has() --- */
-
-/* Hide initial content when its box is hovered */
-.world-box:hover .box-content {
+/* Hide initial content when its box is active */
+.world-box.active-box .box-content {
     opacity: 0;
     transition: opacity 0.4s ease;
 }
@@ -675,71 +672,72 @@ section {
 /* Style the hover content overlay */
 #world-showcase-box .box-hover-content,
 #future-world-box .box-hover-content {
-    position: fixed; /* Keep as fixed for overlay effect */
+    position: fixed; 
     top: 50%;
     left: 40%;
     transform: translate(-50%, -50%);
-    width: 35vw; /* Changed to viewport-relative width */
-    max-width: 90vw; /* Changed to viewport-relative max-width */
+    width: 35vw; 
+    max-width: 90vw; 
     height: auto;
-    max-height: 85vh; /* Slightly increased max-height */
-    /* Removed overflow-y to eliminate scrollbar */
-    /* Inherits background, padding, etc. from .box-hover-content */
-    /* Inherits opacity, visibility, transition from .box-hover-content */
-    /* Inherits z-index, box-shadow from .box-hover-content */
+    max-height: 85vh; 
 }
 
-/* Specific adjustment for Future World hover box position and height */
 #future-world-box .box-hover-content {
-    transform: translate(-50%, -65%); /* Nudge significantly upwards */
-    max-height: 90vh; /* Increase max height specifically for this box */
-    /* Width and max-width are inherited from the rule above */
+    transform: translate(-50%, -65%); 
+    max-height: 90vh; 
 }
 
-/* Show the hover content when its box is hovered */
-.world-box:hover .box-hover-content {
+/* Show the hover content when its box is active */
+.world-box.active-box .box-hover-content {
     opacity: 1;
     visibility: visible;
-    transition: opacity 0.7s ease, visibility 0s; /* No delay on visibility when showing */
+    transition: opacity 0.7s ease, visibility 0s; 
 }
 
-/* Hide the non-hovered box completely */
-.worlds-boxes:has(#world-showcase-box:hover) #future-world-box,
-.worlds-boxes:has(#future-world-box:hover) #world-showcase-box {
+/* Hide the non-active box completely */
+.worlds-boxes:has(#world-showcase-box.active-box) #future-world-box,
+.worlds-boxes:has(#future-world-box.active-box) #world-showcase-box {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+}
+
+/* Hide the section header when a box is active */
+#two-worlds-section:has(.world-box.active-box) h2 {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s ease, visibility 0s linear 0.4s;
 }
 
 /* Create and manage the background dimming overlay *within the section* */
-#two-worlds-section::before { /* Apply to section instead of container */
+#two-worlds-section::before { 
     content: '';
-    position: absolute; /* Position relative to the section */
+    position: absolute; 
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.8); /* Slightly darker overlay */
-    z-index: 0; /* Behind the .worlds-container content (z-index: 1) */
+    background-color: rgba(0, 0, 0, 0.8); 
+    z-index: 0; 
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.7s ease, visibility 0s linear 0.7s;
-    pointer-events: none; /* Allow clicks through */
+    pointer-events: none; 
 }
 
-/* Show the background overlay when either box is hovered */
-#two-worlds-section:has(.world-box:hover)::before { /* Target section's ::before */
+/* Show the background overlay when either box is active */
+#two-worlds-section:has(.world-box.active-box)::before { 
     opacity: 1;
     visibility: visible;
     transition: opacity 0.7s ease, visibility 0s;
 }
 
 /* Highlight the correct map overlay */
-.worlds-container:has(#world-showcase-box:hover) .map-container #world-showcase-overlay {
+.worlds-container:has(#world-showcase-box.active-box) .map-container #world-showcase-overlay {
     opacity: 1;
 }
 
-.worlds-container:has(#future-world-box:hover) .map-container #future-world-overlay {
+.worlds-container:has(#future-world-box.active-box) .map-container #future-world-overlay {
     opacity: 1;
 }
 
@@ -782,25 +780,24 @@ section {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 80px 50px; /* Added more padding */
+    padding: 80px 50px;
     min-height: 100vh;
-    z-index: 7; /* Ensure it's above the previous section */
+    z-index: 7; 
     position: relative;
-    display: flex; /* Use flex to center the content box */
+    display: flex; 
     justify-content: center;
     align-items: center;
 }
 
 #stats-content-box {
-    background-color: rgba(60, 90, 130, 0.9); /* Semi-transparent blue from image */
-    color: #E3E8EA; /* Light text color */
+    background-color: rgba(60, 90, 130, 0.9);
+    color: #E3E8EA; 
     padding: 40px 50px;
     border-radius: 30px;
-    max-width: 1200px; /* Limit width */
+    max-width: 1200px; 
     width: 90%;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    /* Opacity and transform are handled by .fade-in-item class */
 }
 
 #stats-content-box h2 {
@@ -815,18 +812,18 @@ section {
 
 .stats-columns {
     display: flex;
-    gap: 50px; /* Space between columns */
+    gap: 50px;
     justify-content: space-between;
 }
 
 .stats-column {
-    flex: 1; /* Each column takes equal space */
+    flex: 1; 
 }
 
 .stats-column h3 {
     font-family: 'World Bold', sans-serif;
     font-size: 2.2em;
-    color: #AADADB; /* Accent color */
+    color: #AADADB; 
     margin-bottom: 15px;
     border-bottom: 2px solid #AADADB;
     padding-bottom: 8px;
@@ -835,41 +832,40 @@ section {
 .stats-column ul {
     list-style: none;
     padding: 0;
-    margin: 0 0 30px 0; /* Space below each list */
+    margin: 0 0 30px 0; 
     font-family: 'Inter', sans-serif;
-    font-size: 1.3em; /* Slightly smaller font for list items */
+    font-size: 1.3em; 
     line-height: 1.7;
 }
 
 .stats-column li {
     margin-bottom: 10px;
-    padding-left: 25px; /* Indent list items */
+    padding-left: 25px; 
     position: relative;
 }
 
-/* Custom bullet points using ::before */
 .stats-column li::before {
-    content: '•'; /* Bullet character */
-    color: #AADADB; /* Accent color */
+    content: '•'; 
+    color: #AADADB; 
     font-weight: bold;
     display: inline-block;
     width: 1em;
-    margin-left: -1.5em; /* Position bullet correctly */
+    margin-left: -1.5em; 
     position: absolute;
-    left: 15px; /* Adjust left positioning */
+    left: 15px; 
     top: 0;
 }
 
 .stats-column strong {
-    font-weight: 600; /* Make strong text slightly bolder */
-    color: #fff; /* White color for emphasis */
+    font-weight: 600; 
+    color: #fff; 
 }
 
 /* Fade-in animation trigger for stats section */
 #stats-section.is-visible #stats-content-box {
     opacity: 1;
     transform: translateY(0);
-    transition-delay: 0.5s; /* Delay the fade-in slightly */
+    transition-delay: 0.5s; 
 }
 
 /* Future World Pavilions Section */
@@ -877,11 +873,11 @@ section {
     background-image: url('Assets/Opening-Years-Assets/futureworldbackground.png');
     background-size: cover;
     background-position: center;
-    background-color: #1a2a3a; /* Fallback color if image isn't loaded */
+    background-color: #1a2a3a; 
     color: white;
     padding: 80px 50px;
     min-height: 100vh;
-    z-index: 8; /* Ensure it's above the previous section */
+    z-index: 8; 
     position: relative;
     display: flex;
     flex-direction: column;
@@ -893,11 +889,11 @@ section {
     background-image: url('Assets/Opening-Years-Assets/Worldshowcasebackground.png');
     background-size: cover;
     background-position: center;
-    background-color: #1a2a3a; /* Fallback color if image isn't loaded */
+    background-color: #1a2a3a; 
     color: white;
     padding: 80px 50px;
     min-height: 100vh;
-    z-index: 9; /* Ensure it's above the previous section */
+    z-index: 9; 
     position: relative;
     display: flex;
     flex-direction: column;
@@ -906,19 +902,19 @@ section {
 
 #future-world-pavilions h2, #world-showcase-pavilions h2 {
     font-family: 'World Bold', sans-serif;
-    font-size: 6.5em; /* Increased from 5em to 6.5em */
+    font-size: 6.5em; 
     color: #E3E8EA;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 60px;
     text-align: center;
-    opacity: 0; /* Start hidden, will be shown with .is-visible */
+    opacity: 0; 
     transform: translateY(30px);
     transition: opacity 1.8s ease-out, transform 1.8s ease-out;
 }
 
 .pavilions-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+    grid-template-columns: repeat(3, 1fr); 
     gap: 40px;
     width: 100%;
     max-width: 1400px;
@@ -927,14 +923,13 @@ section {
 
 .pavilion-card {
     position: relative;
-    background-color: rgba(196, 164, 132, 0.85); /* Darker beige color */
-    border-radius: 30px; /* Increased from 20px to 30px for more rounded corners */
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); /* Lighter shadow */
-    backdrop-filter: blur(5px); /* Add background blur effect */
-    -webkit-backdrop-filter: blur(5px); /* For Safari compatibility */
+    background-color: rgba(196, 164, 132, 0.85); 
+    border-radius: 30px; 
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25); 
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: pointer;
-    /* Rotation will be applied in the .is-visible state */
 }
 
 /* Apply different rotation angles to each card */
@@ -946,10 +941,9 @@ section {
 .pavilion-card:nth-child(6) { --rotate-angle: 1.5deg; }
 
 .pavilion-card:hover {
-    /* Only apply scale on hover, rotation will be handled by the is-visible state */
     transform: scale(1.05);
     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
-    z-index: 1; /* Bring hovered card to front */
+    z-index: 1; 
 }
 
 /* When the section is visible and the card is hovered, combine the rotation with scale */
@@ -1044,7 +1038,7 @@ section {
     position: absolute;
     bottom: 50px;
     right: 100px;
-    background-color: rgba(170, 218, 219, 0.9); /* AADADB with opacity */
+    background-color: rgba(222, 222, 222, 0.9);
     color: #333;
     padding: 20px 30px;
     border-radius: 50%;
@@ -1426,11 +1420,10 @@ section {
 #moving-forward-section {
     background-image: url('Assets/Opening-Years-Assets/Movingforwardbackground.png');
     background-size: cover;
-    background-position: center bottom; /* Changed to focus on bottom part of image */
+    background-position: center bottom; 
     color: white;
-    padding: 50px 50px; /* Increased top/bottom padding */
-    /* Removed min-height to allow section to shrink */
-    z-index: 10; /* Ensure it's above the previous section */
+    padding: 50px 50px; 
+    z-index: 10; 
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1444,7 +1437,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 70px; /* Increased gap for more spacing */
+    gap: 70px; 
 }
 
 /* Intro Message */
@@ -1452,7 +1445,7 @@ section {
     text-align: center;
     max-width: 900px;
     background-color: rgba(0, 0, 0, 0.7);
-    padding: 40px; /* Restored some padding */
+    padding: 40px; 
     border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
@@ -1477,8 +1470,8 @@ section {
 .timeline-container {
     position: relative;
     width: 100%;
-    height: auto; /* Make height dynamic */
-    margin: 60px 0; /* Further increased vertical margin */
+    height: auto;
+    margin: 60px 0;
 }
 
 .timeline-line {
@@ -1494,7 +1487,6 @@ section {
     );
     border-radius: 2px;
     transform: translateY(-50%);
-    /* Add a subtle curve to the line */
     clip-path: ellipse(50% 20px at 50% 50%);
 }
 
@@ -1506,18 +1498,18 @@ section {
     flex-direction: column;
     align-items: center;
     width: 200px;
-    padding-top: 30px; /* Add padding to make space for the year */
+    padding-top: 30px; 
 }
 
 .milestone-year {
     position: absolute;
-    top: 0; /* Position at the top of the milestone container */
+    top: 0; 
     left: 50%;
     transform: translateX(-50%);
     font-family: 'World Bold', sans-serif;
     font-size: 1.4em;
     color: #AADADB;
-    margin-bottom: 8px; /* Space between year and dot */
+    margin-bottom: 8px; 
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
@@ -1543,7 +1535,6 @@ section {
     height: 24px;
     background-color: #AADADB;
     border-radius: 50%;
-    /* margin-bottom: 15px; Removed margin-bottom as year is now above */
     position: relative;
     z-index: 2;
     box-shadow: 0 0 15px 5px rgba(170, 218, 219, 0.7);
@@ -1569,7 +1560,7 @@ section {
     text-align: center;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     position: relative;
-    top: 15px; /* Adjusted top position slightly due to year */
+    top: 15px; 
 }
 
 .milestone-content h3 {
@@ -1591,10 +1582,10 @@ section {
 .closing-banner {
     width: 100%;
     text-align: center;
-    padding: 40px 30px; /* Restored some vertical padding */
+    padding: 40px 30px; 
     background-color: rgba(0, 0, 0, 0.7);
     border-radius: 30px;
-    margin-top: 40px; /* Increased margin-top */
+    margin-top: 40px; 
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
 }
 
@@ -1658,7 +1649,7 @@ section {
     color: white;
     padding: 80px 50px;
     min-height: 100vh;
-    z-index: 11; /* Ensure it's above the previous section */
+    z-index: 11; 
     position: relative;
     display: flex;
     flex-direction: column;
@@ -1769,7 +1760,6 @@ section {
     transition-delay: 1.0s;
 }
 
-/* Apply different aspect ratios to create visual interest */
 .gallery-item:nth-child(3n+1) {
     grid-row: span 1;
 }
@@ -1786,7 +1776,7 @@ section {
 /* Media query for smaller screens */
 @media (max-width: 1200px) {
     .pavilions-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+        grid-template-columns: repeat(2, 1fr); 
     }
     
     .pavilion-circle-container {
@@ -1826,7 +1816,7 @@ section {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(47, 88, 119, 0.85); /* #2F5877 with transparency */
+    background-color: rgba(47, 88, 119, 0.85); 
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 30px;
@@ -1839,7 +1829,7 @@ section {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    border: 2px solid rgba(95, 123, 156, 0.8); /* Using previous background color as stroke */
+    border: 2px solid rgba(95, 123, 156, 0.8); 
 }
 
 #side-nav.visible {
@@ -1858,7 +1848,7 @@ section {
     justify-content: center;
     align-items: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
-    box-sizing: border-box; /* Ensure padding doesn't affect dimensions */
+    box-sizing: border-box; 
 }
 
 #side-nav .nav-icon:hover {
@@ -1887,7 +1877,7 @@ section {
 }
 
 #side-nav a {
-    color: #E7EBEE; /* Default text color */
+    color: #E7EBEE; 
     text-decoration: none;
     font-family: 'World Bold', sans-serif;
     font-size: 1.2em;
@@ -1898,11 +1888,11 @@ section {
 }
 
 #side-nav a:hover {
-    color: #67B5FF; /* Active text color on hover */
+    color: #67B5FF; 
 }
 
 #side-nav a.active {
-    color: #67B5FF; /* Active text color */
+    color: #67B5FF; 
 }
 
 #side-nav .nav-dot {

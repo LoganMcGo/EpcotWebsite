@@ -31,6 +31,23 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
     
+    // Introduction button scroll functionality for my_experiences.html
+    const introductionButton = document.getElementById('introduction-scroll-button');
+    const myExperiencesIntroSection = document.getElementById('introduction');
+    
+    if (introductionButton && myExperiencesIntroSection) {
+        introductionButton.addEventListener('click', function() {
+            gsap.to(window, {
+                duration: 2,
+                scrollTo: {
+                    y: myExperiencesIntroSection.offsetTop,
+                    autoKill: false
+                },
+                ease: "power1.inOut"
+            });
+        });
+    }
+    
     // Media button scroll functionality
     const mediaButton = document.getElementById('media-scroll-button');
     const gallerySection = document.getElementById('gallery-section');
@@ -257,8 +274,51 @@ document.addEventListener('DOMContentLoaded', function () {
     const futureWorldOverlay = document.getElementById('future-world-overlay');
 
     if (worldShowcaseBox && futureWorldBox) {
-        // The CSS handles most of the hover effects, but we can add additional functionality here if needed
-        console.log("World boxes initialized for hover effects");
+        // Convert hover functionality to click for the Two Worlds section
+        let activeBox = null;
+
+        // Function to close any active box
+        const closeActiveBox = () => {
+            if (activeBox) {
+                activeBox.classList.remove('active-box');
+                activeBox = null;
+            }
+        };
+
+        // Click handler for World Showcase box
+        worldShowcaseBox.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from bubbling to document
+            if (activeBox === worldShowcaseBox) {
+                // If this box is already active, close it
+                closeActiveBox();
+            } else {
+                // Close any active box and activate this one
+                closeActiveBox();
+                worldShowcaseBox.classList.add('active-box');
+                activeBox = worldShowcaseBox;
+            }
+        });
+
+        // Click handler for Future World box
+        futureWorldBox.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent event from bubbling to document
+            if (activeBox === futureWorldBox) {
+                // If this box is already active, close it
+                closeActiveBox();
+            } else {
+                // Close any active box and activate this one
+                closeActiveBox();
+                futureWorldBox.classList.add('active-box');
+                activeBox = futureWorldBox;
+            }
+        });
+
+        // Close active box when clicking anywhere else on the document
+        document.addEventListener('click', function() {
+            closeActiveBox();
+        });
+
+        console.log("World boxes initialized for click events");
     }
 
     // Stats Section Animation
@@ -294,16 +354,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const futureDefaultFunFactText = futureFunFactText.textContent;
         
         futurePavilionItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
+            item.addEventListener('click', function() {
                 const funFact = this.getAttribute('data-fun-fact');
                 if (funFact && futureFunFactText) {
                     futureFunFactText.textContent = funFact;
-                }
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                if (futureFunFactText) {
-                    futureFunFactText.textContent = futureDefaultFunFactText;
                 }
             });
         });
@@ -329,16 +383,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const worldShowcaseDefaultFunFactText = worldShowcaseFunFactText.textContent;
         
         worldShowcasePavilionItems.forEach(item => {
-            item.addEventListener('mouseenter', function() {
+            item.addEventListener('click', function() {
                 const funFact = this.getAttribute('data-fun-fact');
                 if (funFact && worldShowcaseFunFactText) {
                     worldShowcaseFunFactText.textContent = funFact;
-                }
-            });
-            
-            item.addEventListener('mouseleave', function() {
-                if (worldShowcaseFunFactText) {
-                    worldShowcaseFunFactText.textContent = worldShowcaseDefaultFunFactText;
                 }
             });
         });
@@ -556,6 +604,302 @@ document.addEventListener('DOMContentLoaded', function () {
             .on('leave', function() {
                 sideNav.classList.remove('visible');
             })
+            .addTo(controller);
+        }
+        
+        // For 90s_00s.html - era transition section
+        const eraTransitionSection = document.querySelector('#era-transition');
+        if (eraTransitionSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#era-transition',
+                triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+                reverse: true // Allow hiding when scrolling back up
+            })
+            .on('enter', function() {
+                sideNav.classList.add('visible');
+            })
+            .on('leave', function() {
+                sideNav.classList.remove('visible');
+            })
+            .addTo(controller);
+        }
+        
+        // For 00-15.html - new era section
+        const newEraSection = document.querySelector('#new-era');
+        if (newEraSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#new-era',
+                triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+                reverse: true // Allow hiding when scrolling back up
+            })
+            .on('enter', function() {
+                sideNav.classList.add('visible');
+            })
+            .on('leave', function() {
+                sideNav.classList.remove('visible');
+            })
+            .addTo(controller);
+        }
+        
+        // For my_experiences.html - introduction section
+        const myExperiencesIntroSection = document.querySelector('#introduction');
+        if (myExperiencesIntroSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#introduction',
+                triggerHook: 0.8, // Show a bit earlier than the section is fully visible
+                reverse: true // Allow hiding when scrolling back up
+            })
+            .on('enter', function() {
+                sideNav.classList.add('visible');
+            })
+            .on('leave', function() {
+                sideNav.classList.remove('visible');
+            })
+            .addTo(controller);
+            
+            // Animate the introduction section
+            new ScrollMagic.Scene({
+                triggerElement: '#introduction',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#introduction', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For my_experiences.html - annual pilgrimage section
+        const annualPilgrimageSection = document.querySelector('#annual-pilgrimage');
+        if (annualPilgrimageSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#annual-pilgrimage',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#annual-pilgrimage', 'is-visible')
+            .addTo(controller);
+            
+            // Animate the ritual cards with staggered delay
+            const ritualCards = document.querySelectorAll('#annual-pilgrimage .ritual-card');
+            
+            // Add animation classes with delays to create staggered effect
+            if (ritualCards.length > 0) {
+                ritualCards.forEach((card, index) => {
+                    card.classList.add(`delay-${index * 100}`);
+                    
+                    new ScrollMagic.Scene({
+                        triggerElement: card.parentElement,
+                        triggerHook: 0.8,
+                        reverse: false
+                    })
+                    .on('enter', function() {
+                        card.classList.add('fade-in');
+                    })
+                    .addTo(controller);
+                });
+            }
+        }
+        
+        // For my_experiences.html - sharing magic section
+        const sharingMagicSection = document.querySelector('#sharing-magic');
+        if (sharingMagicSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#sharing-magic',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#sharing-magic', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For my_experiences.html - favorite attractions section
+        const favoriteAttractionsSection = document.querySelector('#favorite-attractions');
+        if (favoriteAttractionsSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#favorite-attractions',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#favorite-attractions', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For my_experiences.html - culinary tour section
+        const culinaryTourSection = document.querySelector('#culinary-tour');
+        if (culinaryTourSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#culinary-tour',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#culinary-tour', 'is-visible')
+            .addTo(controller);
+            
+            // Animate the pavilion cards with staggered delay
+            const pavilionCards = document.querySelectorAll('#culinary-tour .pavilion-card');
+            
+            // Add animation classes with delays to create staggered effect
+            if (pavilionCards.length > 0) {
+                pavilionCards.forEach((card, index) => {
+                    card.classList.add(`delay-${index * 100}`);
+                    
+                    new ScrollMagic.Scene({
+                        triggerElement: card.parentElement,
+                        triggerHook: 0.8,
+                        reverse: false
+                    })
+                    .on('enter', function() {
+                        card.classList.add('fade-in');
+                    })
+                    .addTo(controller);
+                });
+            }
+        }
+        
+        // For my_experiences.html - festival fun section
+        const festivalFunSection = document.querySelector('#festival-fun');
+        if (festivalFunSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#festival-fun',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#festival-fun', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For my_experiences.html - nostalgic reflections section
+        const nostalgicReflectionsSection = document.querySelector('#nostalgic-reflections');
+        if (nostalgicReflectionsSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#nostalgic-reflections',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#nostalgic-reflections', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For 90s_00s.html - illuminations section
+        const illuminationsSection = document.querySelector('#illuminations');
+        if (illuminationsSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#illuminations',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#illuminations', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For 00-15.html - moving forward section
+        const movingForwardSection = document.querySelector('#moving-forward');
+        if (movingForwardSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#moving-forward',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#moving-forward', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For 00-15.html - future world reimagined section
+        const futureWorldReimaginedSection = document.querySelector('#future-world-reimagined');
+        if (futureWorldReimaginedSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#future-world-reimagined',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#future-world-reimagined', 'is-visible')
+            .addTo(controller);
+            
+            // Animate the pavilion cards with staggered delay
+            const futureWorldCards = document.querySelectorAll('#future-world-reimagined .pavilion-card');
+            
+            // Add animation classes with delays to create staggered effect
+            if (futureWorldCards.length > 0) {
+                futureWorldCards.forEach((card, index) => {
+                    card.classList.add(`delay-${index * 100}`);
+                    
+                    new ScrollMagic.Scene({
+                        triggerElement: card.parentElement,
+                        triggerHook: 0.8,
+                        reverse: false
+                    })
+                    .on('enter', function() {
+                        card.classList.add('fade-in');
+                    })
+                    .addTo(controller);
+                });
+            }
+        }
+        
+        // For 00-15.html - world showcase evolution section
+        const worldShowcaseEvolutionSection = document.querySelector('#world-showcase-evolution');
+        if (worldShowcaseEvolutionSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#world-showcase-evolution',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#world-showcase-evolution', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For 00-15.html - milestones & anniversaries section
+        const milestonesSection = document.querySelector('#milestones-anniversaries');
+        if (milestonesSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#milestones-anniversaries',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#milestones-anniversaries', 'is-visible')
+            .addTo(controller);
+            
+            // Animate the feature cards with staggered delay
+            const featureCards = document.querySelectorAll('#milestones-anniversaries .feature-card');
+            
+            // Add animation classes with delays to create staggered effect
+            if (featureCards.length > 0) {
+                featureCards.forEach((card, index) => {
+                    card.classList.add(`delay-${index * 100}`);
+                    
+                    new ScrollMagic.Scene({
+                        triggerElement: card.parentElement,
+                        triggerHook: 0.8,
+                        reverse: false
+                    })
+                    .on('enter', function() {
+                        card.classList.add('fade-in');
+                    })
+                    .addTo(controller);
+                });
+            }
+        }
+        
+        // For 00-15.html - shifting landscape section
+        const shiftingLandscapeSection = document.querySelector('#shifting-landscape');
+        if (shiftingLandscapeSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#shifting-landscape',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#shifting-landscape', 'is-visible')
+            .addTo(controller);
+        }
+        
+        // For 00-15.html - rhythms of a new age section
+        const rhythmsNewAgeSection = document.querySelector('#rhythms-new-age');
+        if (rhythmsNewAgeSection) {
+            new ScrollMagic.Scene({
+                triggerElement: '#rhythms-new-age',
+                triggerHook: 0.7,
+                reverse: false
+            })
+            .setClassToggle('#rhythms-new-age', 'is-visible')
             .addTo(controller);
         }
         

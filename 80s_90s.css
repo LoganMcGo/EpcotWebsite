@@ -3,7 +3,7 @@
 
 @font-face {
     font-family: 'World Bold';
-    src: url('Assets/fonts/6129.ttf') format('truetype');
+    src: url('Assets/Fonts/6129.ttf') format('truetype');
     font-weight: bold;
     font-style: normal;
 }
@@ -18,7 +18,7 @@ body {
     padding: 0;
     position: relative; 
     font-family: 'Monomaniac One', sans-serif; 
-    background-color: rgba(120, 90, 150, 0.85); /* Changed to light purple */
+    background-color: rgba(120, 90, 150, 0.85);
     color: #e61a1a;
     overflow-x: hidden; 
     --background-blur: 0px; 
@@ -48,7 +48,7 @@ body::after {
     left: -5%;
     width: 110%;
     height: 110%;
-    background-color: rgba(120, 90, 150, var(--tint-opacity)); /* Changed to light purple */
+    background-color: rgba(120, 90, 150, var(--tint-opacity));
     z-index: 0; 
     pointer-events: none; 
 }
@@ -63,7 +63,7 @@ body::after {
     left: 0;
     width: 100%;
     height: 150px; 
-    background: linear-gradient(to bottom, rgba(180, 140, 220, 0.4), rgba(180, 140, 220, 0)); /* Changed to light purple */
+    background: linear-gradient(to bottom, rgba(180, 140, 220, 0.4), rgba(180, 140, 220, 0));
     z-index: 5; 
     pointer-events: none;
     opacity: 1; 
@@ -96,12 +96,12 @@ section {
     z-index: 10; 
     text-align: center;
     width: 850px; 
-    background-color: rgba(150, 120, 190, 0.75); /* Changed to light purple */
+    background-color: rgba(150, 120, 190, 0.75);
     padding: 10px 10px 30px; 
     border-radius: 30px; 
     backdrop-filter: blur(10px); 
     -webkit-backdrop-filter: blur(10px); 
-    border: 2px solid #D8C2E5; /* Changed to lighter purple */
+    border: 2px solid #D8C2E5;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); 
     opacity: 1; 
 }
@@ -109,7 +109,7 @@ section {
 .hero-content h1 {
     font-family: 'World Bold', sans-serif; 
     font-size: 8.5em; 
-    color: #F0E6F8; /* Changed to very light purple */
+    color: #F0E6F8;
     margin: 0 0;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
 }
@@ -118,14 +118,14 @@ section {
     font-size: 4.2em; 
     margin: 0 0 15px 0; 
     opacity: 1; 
-    color: #D8C2E5; /* Changed to lighter purple */
+    color: #D8C2E5;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
 }
 
 .hero-buttons button {
-    background-color: #D8C2E5; /* Changed to lighter purple */
+    background-color: #D8C2E5;
     border: none;
-    color: #4A3A5A; /* Changed to dark purple */
+    color: #4A3A5A;
     padding: 20px 50px; 
     margin-left: 20px;
     border-radius: 35px; 
@@ -137,12 +137,13 @@ section {
 }
 
 .hero-buttons button:hover {
-    background-color: #C2A5D8; /* Changed to slightly darker purple */
+    background-color: #C2A5D8;
     box-shadow: 0 7px 18px rgba(0, 0, 0, 0.3); 
 }
 
-.hero-buttons button:last-child {
-    margin-left: 200px; 
+.hero-buttons button {
+    margin: 0 auto;
+    display: inline-block;
 }
 
 /* Fade-in animation for elements */
@@ -158,7 +159,7 @@ section {
     left: 20px;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(120, 90, 150, 0.85); /* Changed to light purple */
+    background-color: rgba(120, 90, 150, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 30px;
@@ -171,7 +172,7 @@ section {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.5s ease, visibility 0.5s ease;
-    border: 2px solid rgba(150, 120, 190, 0.8); /* Changed to light purple */
+    border: 2px solid rgba(150, 120, 190, 0.8);
 }
 
 #side-nav.visible {
@@ -230,11 +231,11 @@ section {
 }
 
 #side-nav a:hover {
-    color: #D8C2E5; /* Changed to lighter purple */
+    color: #D8C2E5;
 }
 
 #side-nav a.active {
-    color: #D8C2E5; /* Changed to lighter purple */
+    color: #D8C2E5;
 }
 
 #side-nav .nav-dot {
@@ -645,7 +646,7 @@ section {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    max-width: 600px; /* Or adjust as needed */
+    max-width: 600px; 
     margin-left: auto;
     margin-right: auto;
     width: 100%;
@@ -686,11 +687,11 @@ section {
 }
 
 .spotlight-image {
-    width: 150px; /* Adjust size as needed */
+    width: 150px; 
     height: 150px;
     object-fit: cover;
     margin-bottom: 20px;
-    border-radius: 10px; /* Optional: if placeholder has a background */
+    border-radius: 10px; 
 }
 
 .spotlight-content p {
@@ -703,7 +704,7 @@ section {
 }
 
 .purple-highlight {
-    color: #D8C2E5; /* Lighter purple for emphasis */
+    color: #D8C2E5; 
     font-weight: bold;
 }
 
@@ -743,7 +744,7 @@ section {
 }
 
 .themes-table th {
-    background-color: rgba(100, 70, 130, 0.85); /* Darker purple for header */
+    background-color: rgba(100, 70, 130, 0.85);
     font-family: 'World Bold', sans-serif;
     font-size: 1.3em;
     color: #F0E6F8;
@@ -761,7 +762,7 @@ section {
 }
 
 .themes-table tr:nth-child(even) {
-    background-color: rgba(130, 100, 170, 0.4); /* More visible striping */
+    background-color: rgba(130, 100, 170, 0.4);
 }
 
 .themes-table tr:nth-child(even):hover {
@@ -772,7 +773,6 @@ section {
     border-bottom: none;
 }
 
-/* Two-column layout for sections */
 .two-column-layout {
     display: flex;
     flex-direction: row;
@@ -869,11 +869,11 @@ section {
 }
 
 .experience-highlights-list li::before {
-    content: '✦'; /* Star symbol */
+    content: '✦';
     position: absolute;
     left: 0;
     top: 0;
-    color: #D8C2E5; /* Lighter purple */
+    color: #D8C2E5;
     font-size: 0.9em;
 }
 
@@ -925,7 +925,6 @@ section {
     z-index: 2;
 }
 
-/* Apply different aspect ratios to create visual interest */
 .gallery-item:nth-child(3n+1) {
     grid-row: span 1;
 }
@@ -981,7 +980,7 @@ section {
     margin-top: 30px;
     padding: 25px;
     border-left: 5px solid #D8C2E5;
-    background-color: rgba(120, 90, 150, 0.6); /* Slightly darker than philosophical quote */
+    background-color: rgba(120, 90, 150, 0.6);
     border-radius: 0 10px 10px 0;
     max-width: 700px;
     line-height: 1.6;
