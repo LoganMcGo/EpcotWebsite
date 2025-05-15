@@ -1,0 +1,1110 @@
+@import url('https://fonts.googleapis.com/css2?family=Monomaniac+One&family=Inter:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:ital,wght@0,400;0,600;1,400&display=swap'); 
+
+@font-face {
+    font-family: 'World Bold';
+    src: url('Assets/Fonts/6129.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+html {
+    background-color: transparent; 
+    height: 100%; 
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    position: relative; 
+    font-family: 'Monomaniac One', sans-serif; 
+    background-color: rgba(204, 85, 0, 0.85);
+    color: #e61a1a;
+    overflow-x: hidden; 
+    --background-blur: 0px; 
+    --tint-opacity: 0; 
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: -5%; 
+    left: -5%; 
+    width: 110%; 
+    height: 110%; 
+    background-image: url('Assets/90-00s Assets/Mainbackground.webp');
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+    filter: blur(var(--background-blur)); 
+    z-index: -1; 
+    pointer-events: none; 
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -5%;
+    left: -5%;
+    width: 110%;
+    height: 110%;
+    background-color: rgba(204, 85, 0, var(--tint-opacity));
+    z-index: 0; 
+    pointer-events: none; 
+}
+
+.content {
+    background-color: transparent; 
+}
+
+.top-gradient-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px; 
+    background: linear-gradient(to bottom, rgba(255, 146, 72, 0.4), rgba(255, 146, 72, 0));
+    z-index: 5; 
+    pointer-events: none;
+    opacity: 1; 
+    transition: opacity 0.1s ease-out; 
+}
+
+section {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    padding: 50px;
+    box-sizing: border-box;
+    overflow: hidden; 
+    scroll-snap-align: start; 
+}
+
+/* Hero section should still be full height */
+.hero-section {
+    min-height: 100vh;
+}
+
+/* Gallery section should still be full height */
+#gallery-section {
+    min-height: 100vh;
+}
+
+.hero-section {
+    color: #fff;
+    z-index: 1; 
+}
+
+.hero-content {
+    position: fixed; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    z-index: 10; 
+    text-align: center;
+    width: 850px; 
+    background-color: rgba(204, 85, 0, 0.75);
+    padding: 10px 10px 30px; 
+    border-radius: 30px; 
+    backdrop-filter: blur(10px); 
+    -webkit-backdrop-filter: blur(10px); 
+    border: 2px solid #FF9248;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35); 
+    opacity: 1; 
+}
+
+.hero-content h1 {
+    font-family: 'World Bold', sans-serif; 
+    font-size: 8.5em; 
+    color: #FFE6D1;
+    margin: 0 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+}
+
+.hero-content .year {
+    font-size: 4.2em; 
+    margin: 0 0 15px 0; 
+    opacity: 1; 
+    color: #FF9248;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); 
+}
+
+.hero-buttons button {
+    background-color: #FF9248;
+    border: none;
+    color: #993D00;
+    padding: 20px 50px; 
+    margin-left: 20px;
+    border-radius: 35px; 
+    cursor: pointer;
+    font-size: 2.2em; 
+    font-weight: bold;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); 
+}
+
+.hero-buttons button:hover {
+    background-color: #E67E22;
+    box-shadow: 0 7px 18px rgba(0, 0, 0, 0.3); 
+}
+
+.hero-buttons button {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+/* Fade-in animation for elements */
+.fade-in-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1.8s ease-out, transform 1.8s ease-out; 
+}
+
+/* Side Navigation Bar */
+#side-nav {
+    position: fixed;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(204, 85, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 30px 15px;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+    border: 2px solid rgba(255, 146, 72, 0.8);
+}
+
+#side-nav.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+#side-nav .nav-icon {
+    margin-bottom: 15px;
+    display: block;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+#side-nav .nav-icon:hover {
+    transform: scale(1.1);
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+#side-nav .nav-icon img {
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+}
+
+#side-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#side-nav li {
+    margin: 8px 0;
+    text-align: center;
+}
+
+#side-nav a {
+    color: #E7EBEE;
+    text-decoration: none;
+    font-family: 'World Bold', sans-serif;
+    font-size: 1.2em;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 15px;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+#side-nav a:hover {
+    color: #FF9248;
+}
+
+#side-nav a.active {
+    color: #FF9248;
+}
+
+#side-nav .nav-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #E7EBEE;
+    border-radius: 50%;
+    margin: 8px 0;
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.85);
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.modal.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content-image {
+    margin: auto;
+    display: block;
+    max-width: 85vw;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+.modal-close-button {
+    position: absolute;
+    top: 25px;
+    right: 40px;
+    color: #f1f1f1;
+    font-size: 45px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.modal-close-button:hover,
+.modal-close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+/* Section 1: Epcot in Transition */
+.era-transition-section {
+    min-height: 100vh;
+    padding: 100px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.intro-text-container {
+    margin-top: 20px;
+}
+
+.intro-text-container p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.6em;
+    color: #FFE6D1;
+    line-height: 1.7;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.quote-text {
+    font-size: 2em;
+    font-style: italic;
+    font-weight: 600;
+    color: #FFCBA4;
+}
+
+.intro-text-container p:last-child {
+    margin-bottom: 0;
+}
+
+/* Section 2: Future World's Metamorphosis */
+.future-world-section {
+    min-height: 80vh;
+    padding: 100px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* Section 3: World Showcase Evolution */
+.world-showcase-section {
+    min-height: 80vh;
+    padding: 100px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.section-container {
+    width: 100%;
+    max-width: 1200px;
+    background-color: rgba(204, 85, 0, 0.75);
+    border-radius: 30px;
+    padding: 40px;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
+    border: 2px solid #FF9248;
+}
+
+.section-title {
+    font-family: 'World Bold', sans-serif;
+    font-size: 3.5em;
+    color: #FFE6D1;
+    text-align: center;
+    margin-bottom: 40px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+}
+
+.pavilion-subsection {
+    width: 100%;
+    margin-bottom: 40px;
+}
+
+.subsection-title {
+    font-family: 'World Bold', sans-serif;
+    font-size: 2.5em;
+    color: #FFE6D1;
+    margin-bottom: 30px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.pavilion-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.pavilion-card {
+    background-color: rgba(255, 146, 72, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 320px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 230, 209, 0.5);
+    display: flex;
+    flex-direction: column;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pavilion-card.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.pavilion-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-image-container {
+    height: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(153, 61, 0, 0.5);
+    padding: 0;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card-content {
+    padding: 20px;
+}
+
+.pavilion-name {
+    font-family: 'World Bold', sans-serif;
+    font-size: 1.8em;
+    color: #FFE6D1;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.pavilion-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3em;
+    color: #FFE6D1;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.closures-note {
+    background-color: rgba(153, 61, 0, 0.7);
+    border-radius: 15px;
+    padding: 20px 30px;
+    margin-top: 30px;
+    border-left: 5px solid #FF9248;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.closures-note.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.closures-note p {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.2em;
+    color: #FFE6D1;
+    font-style: italic;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Festival Spotlight */
+.festival-spotlight {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: rgba(153, 61, 0, 0.7);
+    border-radius: 20px;
+    padding: 30px;
+    margin: 30px 0;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 230, 209, 0.3);
+}
+
+.festival-image-container {
+    flex: 0 0 200px;
+    height: 200px;
+    margin-right: 30px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.festival-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.festival-content {
+    flex: 1;
+}
+
+.festival-title {
+    font-family: 'World Bold', sans-serif;
+    font-size: 2.2em;
+    color: #FFE6D1;
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.festival-content p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.4em;
+    color: #FFE6D1;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.world-showcase-updates {
+    margin-top: 40px;
+}
+
+.updates-list {
+    list-style: none;
+    padding-left: 0;
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.4em;
+    color: #FFE6D1;
+    line-height: 1.6;
+}
+
+.updates-list li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.updates-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #FF9248;
+    font-size: 1.2em;
+}
+
+/* Section 4: Millennium Celebration */
+.millennium-celebration-section {
+    min-height: 100vh;
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.millennium-celebration-section .section-container {
+    max-width: 1400px;
+}
+
+.millennium-features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    width: 100%;
+}
+
+.feature-card {
+    background-color: rgba(255, 146, 72, 0.8);
+    border-radius: 20px;
+    overflow: hidden;
+    width: 100%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid rgba(255, 230, 209, 0.5);
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.feature-image-container {
+    height: 220px; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(153, 61, 0, 0.5); 
+    padding: 0;
+    overflow: hidden;
+}
+
+.feature-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.feature-content {
+    padding: 20px;
+}
+
+.feature-name {
+    font-family: 'World Bold', sans-serif;
+    font-size: 1.8em;
+    color: #FFE6D1; 
+    margin-top: 0;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.feature-description {
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3em;
+    color: #FFE6D1; 
+    line-height: 1.5;
+    margin: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease, padding-top 0.5s ease;
+    padding-top: 0;
+}
+
+.feature-card.expanded .feature-description {
+    max-height: 300px; 
+    padding-top: 15px;
+}
+
+/* Section 5: Changing Face of Edutainment */
+.changing-edutainment-section {
+    min-height: 70vh; 
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.changing-edutainment-section .section-container {
+    max-width: 1400px; 
+}
+
+/* Two-column layout for sections */
+.two-column-layout {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    width: 100%;
+}
+
+.column-left, .column-right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.key-shifts-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+    font-family: 'Source Serif Pro', serif;
+    color: #FFE6D1; 
+    font-size: 1.4em;
+    line-height: 1.6;
+}
+
+.key-shifts-list li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+}
+
+.key-shifts-list li::before {
+    content: '→'; 
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #FF9248; 
+    font-size: 1em;
+}
+
+.epcot-quote {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.8em;
+    font-style: italic;
+    color: #FFE6D1; 
+    text-align: center;
+    margin-top: 30px;
+    padding: 25px;
+    border-left: 5px solid #FF9248; 
+    background-color: rgba(153, 61, 0, 0.6); 
+    border-radius: 0 10px 10px 0;
+    max-width: 700px;
+    line-height: 1.6;
+}
+
+/* Section 6: Sounds and Spectacles */
+.sounds-spectacles-section {
+    min-height: 100vh; 
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+.sounds-spectacles-section .section-container {
+    max-width: 1400px;
+}
+
+.highlight-tracks-list {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 20px;
+    font-family: 'Source Serif Pro', serif;
+    color: #FFE6D1; 
+    font-size: 1.5em;
+    line-height: 1.7;
+}
+
+.highlight-tracks-list li {
+    margin-bottom: 15px;
+    padding-left: 25px;
+    position: relative;
+    display: block;
+    background-color: rgba(153, 61, 0, 0.6); 
+    padding: 10px 20px;
+    border-radius: 20px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.highlight-tracks-list li:hover {
+    transform: translateY(-3px);
+    background-color: rgba(204, 85, 0, 0.8); 
+}
+
+.spectacle-spotlight {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 25px; 
+}
+
+.spotlight-image-container {
+    width: 100%;
+    max-width: 600px;
+    height: 200px; 
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 15px; 
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.spotlight-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.spotlight-content {
+    max-width: 800px;
+}
+
+.spotlight-content p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.6em;
+    color: #FFE6D1; 
+    line-height: 1.6;
+    margin: 0;
+    text-align: center;
+}
+
+/* Section: Illuminations Spotlight */
+.illuminations-section {
+    min-height: 100vh; 
+    padding: 80px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.illuminations-section .section-container {
+    max-width: 1400px;
+}
+
+.illuminations-content {
+    display: flex;
+    flex-direction: row; 
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.illuminations-image-container {
+    width: 45%; 
+    height: 450px;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    order: 2; 
+}
+
+.illuminations-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.illuminations-description {
+    width: 55%; 
+    order: 1;
+    text-align: left; 
+}
+
+.illuminations-description p {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 1.6em;
+    color: #FFE6D1; 
+    line-height: 1.6;
+    margin-bottom: 20px;
+    text-align: left; 
+}
+
+.illuminations-quote {
+    font-family: 'Source Serif Pro', serif;
+    font-size: 2em;
+    font-style: italic;
+    color: #FF9248; 
+    text-align: left; 
+    margin: 30px 0;
+    line-height: 1.6;
+}
+
+/* Media query for smaller screens - revert to column layout */
+@media (max-width: 992px) {
+    .illuminations-content {
+        flex-direction: column;
+    }
+    
+    .illuminations-image-container {
+        width: 100%;
+        order: 1;
+        margin-bottom: 30px;
+    }
+    
+    .illuminations-description {
+        width: 100%;
+        order: 2;
+    }
+    
+    .illuminations-description p,
+    .illuminations-quote {
+        text-align: center;
+    }
+}
+
+/* Gallery Section */
+#gallery-section {
+    background-color: #000;
+    color: white;
+    padding: 80px 50px;
+    min-height: 100vh;
+    z-index: 11;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gallery-section h2 {
+    font-family: 'World Bold', sans-serif;
+    font-size: 5em;
+    color: #FFE6D1; 
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.gallery-item {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    z-index: 1;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.6);
+    z-index: 2;
+}
+
+/* Apply different aspect ratios to create visual interest */
+.gallery-item:nth-child(3n+1) {
+    grid-row: span 1;
+}
+
+.gallery-item:nth-child(3n+2) {
+    grid-row: span 2;
+    height: 620px;
+}
+
+.gallery-item:nth-child(3n+3) {
+    grid-row: span 1;
+}
+
+/* Animation delay classes for staggered animations */
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+.delay-400 {
+    transition-delay: 0.4s;
+}
+
+.delay-500 {
+    transition-delay: 0.5s;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 1200px) {
+    .section-container {
+        padding: 30px;
+    }
+    
+    .section-title {
+        font-size: 2.8em;
+    }
+    
+    .subsection-title {
+        font-size: 2.2em;
+    }
+    
+    .hero-content {
+        width: 90%;
+        max-width: 850px;
+    }
+    
+    .hero-content h1 {
+        font-size: 6em;
+    }
+    
+    .hero-content .year {
+        font-size: 3em;
+    }
+    
+    .hero-buttons button {
+        padding: 15px 30px;
+        font-size: 1.8em;
+    }
+    
+    .hero-buttons button:last-child {
+        margin-left: 100px;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .festival-spotlight {
+        flex-direction: column;
+    }
+    
+    .festival-image-container {
+        margin-right: 0;
+        margin-bottom: 20px;
+        width: 100%;
+        max-width: 300px;
+    }
+}
+
+@media (max-width: 768px) {
+    .era-transition-section,
+    .future-world-section,
+    .world-showcase-section,
+    .millennium-celebration-section,
+    .changing-edutainment-section,
+    .sounds-spectacles-section {
+        padding: 80px 20px;
+    }
+    
+    .intro-text-container p {
+        font-size: 1.2em;
+        line-height: 1.6;
+    }
+    
+    .section-container {
+        padding: 20px;
+    }
+    
+    .section-title {
+        font-size: 2.2em;
+    }
+    
+    .subsection-title {
+        font-size: 1.8em;
+    }
+    
+    #side-nav {
+        left: 10px;
+        padding: 15px 10px;
+    }
+    
+    #side-nav .nav-icon {
+        width: 50px;
+        height: 50px;
+    }
+    
+    #side-nav .nav-icon img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    #side-nav a {
+        font-size: 1em;
+        padding: 4px 8px;
+    }
+    
+    #side-nav .nav-dot {
+        width: 6px;
+        height: 6px;
+        margin: 4px 0;
+    }
+    
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .gallery-item:nth-child(3n+2) {
+        height: 300px;
+    }
+    
+    #gallery-section h2 {
+        font-size: 3em;
+    }
+    
+    .two-column-layout {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .epcot-quote {
+        font-size: 1.3em;
+        padding: 15px;
+    }
+}
